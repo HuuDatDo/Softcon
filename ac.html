@@ -28,15 +28,49 @@
   <aside name="top">
     <h2>Assignment Calculator</h2>
     <p class="f6">Works with Chrome--since it's "date" field is accessible (keyboard navigable).</p>
+    <div style="display: flex; justify-content: space-between;">
+      <a href="essay.html">
+        <button id="essay" value="essay" v-model="picked" style="background-color: blue; width: 150px; height: 120px;">
+          <img src="essay.png" alt="Essay">
+          <p>Essay</p>
+        </button>
+      </a>
+      <a href="presentation.html">
+        <button id="presentation" value="presentation" v-model="picked" style="background-color: red; width: 150px; height: 120px;">
+          <img src="presentation.png" alt="Presentation">
+          <p>Presentation</p>
+        </button>
+      </a>
+      <a href="video.html">
+        <button id="video" value="video" v-model="picked" style="background-color: blue; width: 150px; height: 120px;">
+          <img src="video.png" alt="Video">
+          <p>Video</p>
+        </button>
+      </a>
+      <a href="project.html">
+        <button id="project" value="project" v-model="picked" style="background-color: red; width: 150px; height: 120px;">
+          <img src="project.png" alt="Project">
+          <p>Project</p>
+        </button>
+      </a>
+      <a href="report.html">
+        <button id="report" value="report" v-model="picked" style="background-color: blue; width: 150px; height: 120px;">
+          <img src="report.png" alt="Report">
+          <p>Report</p>
+        </button>
+      </a>
+    </div>
 
-    <input type="radio" id="essay" value="essay" v-model="picked">
+
+
+    <!-- <input type="radio" id="essay" value="essay" v-model="picked">
     <label for="essay">Research Assignment / Essay</label>
     <br>
     <input type="radio" id="presentation" value="presentation" v-model="picked">
     <label for="presentation">Presentation with slides</label>
     <br>
     <input type="radio" id="video" value="video" v-model="picked">
-    <label for="video">Video Assignment</label>
+    <label for="video">Video Assignment</label> -->
 
     <br /><br />
 
