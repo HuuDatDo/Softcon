@@ -213,7 +213,7 @@
         </b-container>
 
         <template v-if="show && isDatescategory()">
-            <b-container class="steps">
+            <!-- <b-container class="steps">
                 <b-row>
                     <b-col>
                         <b-button block v-b-toggle.collapse-3 size="lg" class="m-1"><b>Step 1:</b> Clearly state your
@@ -240,7 +240,28 @@
                         </b-collapse>
                     </b-col>
                 </b-row>
-            </b-container>
+            </b-container> -->
+            <!-- <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
+                <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
+                  Roadmap to Writing a Research Essay
+                </h2>
+      
+                <p class="fw1 f5 mt0 mb3">
+                  The following series of steps were obtained from our<br />
+                  <a class="link hover-orange" href="https://www.youtube.com/watch?v=6SozOjFc30c">video: Roadmap to Research</a><br />
+                  View more 'research help' videos on our Youtube channel <a class="link hover-orange" href="https://www.youtube.com/user/LibraryGeorgian/videos?sort=dd&view=0&shelf_id=0">youtube.com/LibraryGeorgian</a>
+                </p>
+              </article> -->
+              <steps v-bind:stepobject='ressay1'></steps>
+              <steps v-bind:stepobject='ressay2'></steps>
+              <steps v-bind:stepobject='ressay3'></steps>
+              <steps v-bind:stepobject='ressay4'></steps>
+              <steps v-bind:stepobject='ressay5'></steps>
+              <steps v-bind:stepobject='ressay6'></steps>
+              <steps v-bind:stepobject='ressay7'></steps>
+              <steps v-bind:stepobject='ressay8'></steps>
+              <steps v-bind:stepobject='ressay9'></steps>
+              <a class="f6 link dim br-pill ba ph3 pv2 mb2 dib light-purple" href="#top">Back to top ^</a>
         </template>
 
         <script src="//unpkg.com/vue@2.6.12/dist/vue.min.js"></script>
@@ -553,13 +574,29 @@
                     },
                 },
 
-                template: '<transition name="fade"><article class="pa3 mw8 br3 hidden ba b--black-10 mv4"><h3 class="f4 bg-near-white br3 br--top black-60 mv0 pv2 ph3"">{{ stepobject.step }}. {{ stepobject.heading }} by {{ calcDueDate }}</h3>\
-            <ul class="list pl0 ml0 center mw8 ba b--light-silver br2 bg-washed-blue">\
-              <li v-for="(value, key) in stepobject.todos" class="ph3 pv3 bb b--light-silver">\
-              {{value}}\
-              </li></ul>\
-              <a v-bind:href="stepobject.linkURL" class="f6 link dim br2 ph3 pv2 mb2 dib white bg-mid-gray">{{ stepobject.linkText }}</a>\
-            </article></transition>'
+                template: '<b-container class="steps">\
+                <b-row>\
+                    <b-col>\
+                        <b-button block v-b-toggle.collapse-3 size="lg" class="m-1"><b>Step </b> {{ stepobject.step }}: {{ stepobject.heading }} by {{ calcDueDate }}</b-button>\
+                        <b-collapse visible id="collapse-3">\
+                            <b-card>\
+                                <b-card-text>\
+                                    <li>Review the guidelines and if you need further clarification, check with your course professor.</li>\
+                                    <li v-for="(value, key) in stepobject.todos">\
+                                        {{value}}\
+                                    </li>\
+                                    <li>For help developing your research question view "Taming Your Research Topic".</li>\
+                                </b-card-text>\
+                                <b-button variant="outline-info">\
+                                    <h5>Video: Taming your research topic <b-icon icon="hand-index"\
+                                            aria-hidden="true"></b-icon>\
+                                    </h5>\
+                                </b-button>\
+                            </b-card>\
+                        </b-collapse>\
+                    </b-col>\
+                </b-row>\
+            </b-container>'
             };
 
             var vm = new Vue({
