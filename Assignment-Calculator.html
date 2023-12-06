@@ -45,7 +45,9 @@
             }
         }
 
-
+        .content {
+            text-align: left;
+        }
 
         div.card {
             .card-body {
@@ -125,7 +127,7 @@
                 <b-col>
                     <template>
                         <div class="form">
-                            <b-form-group description="i.e. Reflection essahe for ABC " label="Assignment name:"
+                            <b-form-group description="i.e. Reflection essay for ABC " label="Assignment name:"
                                 label-for="input-1" valid-feedback="Thank you!">
                                 <b-form-input id="input-1" v-model="blank" trim></b-form-input>
                             </b-form-group>
@@ -162,25 +164,37 @@
                             <b-form-group>
                                 <label>Assignment type:</label>
                                 <b-card-group deck>
-                                    <b-button variant="outline-info"><img
+                                    <b-button @click="pickAssignment('researchEssays')" variant="outline-info"><img
                                             src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
-                                        <h5>Essay</h5>
+                                        <h5>RESEARCH ESSAYS</h5>
                                     </b-button>
-                                    <b-button variant="outline-info"><img
+                                    <b-button @click="pickAssignment('stemPosterPresentation')" variant="outline-info"><img
                                             src="https://media-public.canva.com/CFjdg/MAFpI2CFjdg/1/t.png" />
-                                        <h5>Presentation</h5>
+                                        <h5>STEM POSTER PRESENTATION</h5>
                                     </b-button>
-                                    <b-button variant="outline-info"><img
+                                    <b-button @click="pickAssignment('criticalReflection')" variant="outline-info"><img
                                             src="https://media-public.canva.com/0RzBw/MAFUGP0RzBw/1/t.png" />
-                                        <h5>Video</h5>
+                                        <h5>CRITICAL REFLECTION</h5>
                                     </b-button>
-                                    <b-button variant="outline-info"><img
+                                    <b-button @click="pickAssignment('literatureReview')" variant="outline-info"><img
                                             src="https://media-public.canva.com/QFtjY/MAFEKnQFtjY/1/t.png" />
-                                        <h5>Project</h5>
+                                        <h5>LITERATURE REVIEW</h5>
                                     </b-button>
-                                    <b-button variant="outline-info"><img
+                                    <b-button @click="pickAssignment('articleReview')" variant="outline-info"><img
                                             src="https://media-public.canva.com/5fE14/MAFmn45fE14/1/t.png" />
-                                        <h5>Report</h5>
+                                        <h5>ARTICLE REVIEW</h5>
+                                    </b-button>
+                                    <b-button @click="pickAssignment('annotatedBibliography')" variant="outline-info"><img
+                                            src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
+                                        <h5>ANNOTATED BIBLIOGRAPHY</h5>
+                                    </b-button>
+                                    <b-button @click="pickAssignment('labReport')" variant="outline-info"><img
+                                            src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
+                                        <h5>LAB REPORT</h5>
+                                    </b-button>
+                                    <b-button @click="pickAssignment('policyBrief')" variant="outline-info"><img
+                                            src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
+                                        <h5>POLICY BRIEF</h5>
                                     </b-button>
                                 </b-card-group>
                                 <b-button @click="toggle" block variant="primary" class="btn-primary">Generate Schedule <b-icon
@@ -212,56 +226,160 @@
             </b-row>
         </b-container>
 
-        <template v-if="show && isDatescategory()">
-            <!-- <b-container class="steps">
-                <b-row>
-                    <b-col>
-                        <b-button block v-b-toggle.collapse-3 size="lg" class="m-1"><b>Step 1:</b> Clearly state your
-                            research question
-                        </b-button>
-                        <b-collapse visible id="collapse-3">
-                            <b-card>
-                                <h5><b>Percent time spent on this step: 5%</b></h5>
-                                <b-card-text>
-                                    <li>Review the guidelines and if you need further clarification, check with your course
-                                        professor.</li>
-                                    <li>General Definition: A research essay is a piece of writing that provides information
-                                        about a particular topic for which you have researched. Usually it is a topic that
-                                        you are not familiar with, so investigation and assessment will be a large part of
-                                        the process.</li>
-                                    <li>For help developing your research question view "Taming Your Research Topic".</li>
-                                </b-card-text>
-                                <b-button variant="outline-info">
-                                    <h5>Video: Taming your research topic <b-icon icon="hand-index"
-                                            aria-hidden="true"></b-icon>
-                                    </h5>
-                                </b-button>
-                            </b-card>
-                        </b-collapse>
-                    </b-col>
-                </b-row>
-            </b-container> -->
-            <!-- <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
+        <template v-if="isAssignment('researchEssays') && show && isDatescategory()">
+             <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
                 <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
-                  Roadmap to Writing a Research Essay
+                  RESEARCH ESSAYS
                 </h2>
       
                 <p class="fw1 f5 mt0 mb3">
-                  The following series of steps were obtained from our<br />
-                  <a class="link hover-orange" href="https://www.youtube.com/watch?v=6SozOjFc30c">video: Roadmap to Research</a><br />
-                  View more 'research help' videos on our Youtube channel <a class="link hover-orange" href="https://www.youtube.com/user/LibraryGeorgian/videos?sort=dd&view=0&shelf_id=0">youtube.com/LibraryGeorgian</a>
+                  Introduction: A research paper's objective is to gather multiple perspectives, supporting data, and verifiable facts about a subject from books, journals, and interviews, then to interpret the material in writing. It involves the interaction between the writer, readers, and other authors. Scholars and researchers primarily publish their discoveries and advancements in their fields of study through research papers.
+                  While a research paper must be finalized in a format that is clear, concise, and well-organized, writing one is rather a difficult task. It includes processes like investigation, logical thinking, evaluating sources, organizing, and writing. These phases do not go in a straight line; instead, the author swings back and forth, and throughout the process, the argument and focus of the paper are developed.
                 </p>
-              </article> -->
-              <steps v-bind:stepobject='ressay1'></steps>
-              <steps v-bind:stepobject='ressay2'></steps>
-              <steps v-bind:stepobject='ressay3'></steps>
-              <steps v-bind:stepobject='ressay4'></steps>
-              <steps v-bind:stepobject='ressay5'></steps>
-              <steps v-bind:stepobject='ressay6'></steps>
-              <steps v-bind:stepobject='ressay7'></steps>
-              <steps v-bind:stepobject='ressay8'></steps>
-              <steps v-bind:stepobject='ressay9'></steps>
+              </article> 
+              <steps v-bind:stepobject='researchEssays1'></steps>
+              <steps v-bind:stepobject='researchEssays2'></steps>
+              <steps v-bind:stepobject='researchEssays3'></steps>
+              <steps v-bind:stepobject='researchEssays4'></steps>
+              <steps v-bind:stepobject='researchEssays5'></steps>
               <a class="f6 link dim br-pill ba ph3 pv2 mb2 dib light-purple" href="#top">Back to top ^</a>
+        </template>
+        
+        <template v-if="isAssignment('stemPosterPresentation') && show && isDatescategory()">
+             <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
+                <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
+                    STEM POSTER PRESENTATION
+                </h2>
+      
+                <p class="fw1 f5 mt0 mb3">
+                  Introduction: A poster presentation is a brief visual summary of research findings or a subject that is generally presented at conferences, seminars, or academic events on a sizable poster board. A strong visual presentation and high-quality studies are both components of an effective poster presentation. 
+                  A STEM presentation uses text, graphs, charts, and graphics to explain difficult scientific concepts, experimental findings, or ground-breaking technology innovations. STEM poster presentations give researchers, engineers, and scientists opportunities to display their work, discuss ideas, and get peer comments. This promotes collaboration and the sharing of knowledge throughout the STEM community.
+                  
+                </p>
+              </article> 
+              <steps v-bind:stepobject='stemPosterPresentation1'></steps>
+              <steps v-bind:stepobject='stemPosterPresentation2'></steps>
+              <steps v-bind:stepobject='stemPosterPresentation3'></steps>
+              <a class="f6 link dim br-pill ba ph3 pv2 mb2 dib light-purple" href="#top">Back to top ^</a>
+        </template>
+
+        <template v-if="isAssignment('criticalReflection') && show && isDatescategory()">
+            <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
+               <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
+                 CRITICAL REFLECTION
+               </h2>
+     
+               <p class="fw1 f5 mt0 mb3">
+                As part of an academic assignment, critical reflection involves carefully evaluating, analyzing, and assessing one's perspectives, learning experiences, and the content covered in a project or course. 
+                It encourages learners to engage in in-depth reflection, challenge presumptions, and think broadly about the implications of their studies. Students can improve their critical thinking abilities and have a deeper knowledge of the subject matter by engaging in critical reflection. This approach frequently results in insightful understandings and personal development, making it a crucial part of a well-rounded education.                
+               </p>
+             </article> 
+             <steps v-bind:stepobject='criticalReflection1'></steps>
+             <steps v-bind:stepobject='criticalReflection2'></steps>
+             <steps v-bind:stepobject='criticalReflection3'></steps>
+             <steps v-bind:stepobject='criticalReflection4'></steps>
+             <steps v-bind:stepobject='criticalReflection5'></steps>
+             <a class="f6 link dim br-pill ba ph3 pv2 mb2 dib light-purple" href="#top">Back to top ^</a>
+        </template>
+
+        <template v-if="isAssignment('literatureReview') && show && isDatescategory()">
+            <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
+               <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
+                 LITERATURE REVIEW
+               </h2>
+     
+               <p class="fw1 f5 mt0 mb3">
+                A literature review is carefully reviewing and summarizing previous scholarly works on a given subject or research question. It offers a thorough overview of the level of knowledge at the time on a certain topic. Writers use a literature review to critically study and analyze a variety of sources, including books, journals, and other academic publications, in order to spot trends, gaps, and points of contention. 
+                Through this approach, they not only gain a deeper comprehension of the subject, but they are also better able to place their own research within the larger body of previous scholarship. An effective literature review is a crucial part of any academic paper since it provides a foundation for future research.                
+               </p>
+             </article> 
+             <steps v-bind:stepobject='literatureReview1'></steps>
+             <steps v-bind:stepobject='literatureReview2'></steps>
+             <steps v-bind:stepobject='literatureReview3'></steps>
+             <steps v-bind:stepobject='literatureReview4'></steps>
+             <steps v-bind:stepobject='literatureReview5'></steps>
+             <a class="f6 link dim br-pill ba ph3 pv2 mb2 dib light-purple" href="#top">Back to top ^</a>
+        </template>
+
+        <template v-if="isAssignment('articleReview') && show && isDatescategory()">
+            <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
+               <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
+                ARTICLE REVIEW
+               </h2>
+     
+               <p class="fw1 f5 mt0 mb3">
+                An article review involves summarizing the article's important points, identifying its primary arguments, evaluating the methodology, and considering the significance of the work about the topic of study. An article review should also offer suggestions for improvement and give a thoughtful assessment of the article's advantages and disadvantages. 
+                This assignment encourages learners to connect with current research and add to the academic conversation in their chosen fields while also expanding their comprehension of the subject topic.                
+               </p>
+             </article> 
+             <steps v-bind:stepobject='articleReview1'></steps>
+             <steps v-bind:stepobject='articleReview2'></steps>
+             <steps v-bind:stepobject='articleReview3'></steps>
+             <steps v-bind:stepobject='articleReview4'></steps>
+             <steps v-bind:stepobject='articleReview5'></steps>
+             <a class="f6 link dim br-pill ba ph3 pv2 mb2 dib light-purple" href="#top">Back to top ^</a>
+        </template>
+
+        <template v-if="isAssignment('annotatedBibliography') && show && isDatescategory()">
+            <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
+               <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
+                ANNOTATED BIBLIOGRAPHY
+               </h2>
+     
+               <p class="fw1 f5 mt0 mb3">
+                An annotated bibliography comprises a catalog of entries summarizing sources relevant to a particular subject. These sources encompass a range of materials, such as online resources, journal articles, books, and governmental publications.
+               </p>
+             </article> 
+             <steps v-bind:stepobject='annotatedBibliography1'></steps>
+             <steps v-bind:stepobject='annotatedBibliography2'></steps>
+             <steps v-bind:stepobject='annotatedBibliography3'></steps>
+             <steps v-bind:stepobject='annotatedBibliography4'></steps>
+             <steps v-bind:stepobject='annotatedBibliography5'></steps>
+             <steps v-bind:stepobject='annotatedBibliography6'></steps>
+             <a class="f6 link dim br-pill ba ph3 pv2 mb2 dib light-purple" href="#top">Back to top ^</a>
+       </template>
+
+        <template v-if="isAssignment('labReport') && show && isDatescategory()">
+            <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
+               <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
+                LAB REPORT
+               </h2>
+     
+               <p class="fw1 f5 mt0 mb3">
+                Laboratory experiments offer the opportunity to witness scientific principles in practical application and hone your research skills. A lab report serves as an official documentation of an experiment, with the level of detail necessary to enable replication by others. If you're studying in the field of science, you'll discover that lab reports are a widely used means to communicate and disseminate your scientific insights.
+               </p>
+             </article> 
+             <steps v-bind:stepobject='labReport1'></steps>
+             <steps v-bind:stepobject='labReport2'></steps>
+             <steps v-bind:stepobject='labReport3'></steps>
+             <steps v-bind:stepobject='labReport4'></steps>
+             <steps v-bind:stepobject='labReport5'></steps>
+             <steps v-bind:stepobject='labReport6'></steps>
+             <steps v-bind:stepobject='labReport7'></steps>
+             <steps v-bind:stepobject='labReport8'></steps>
+             <a class="f6 link dim br-pill ba ph3 pv2 mb2 dib light-purple" href="#top">Back to top ^</a>
+        </template>
+
+        <template v-if="isAssignment('policyBrief') && show && isDatescategory()">
+            <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
+               <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
+                POLICY BRIEF
+               </h2>
+     
+               <p class="fw1 f5 mt0 mb3">
+                A policy brief is a concise document addressing a specific issue, offering a synthesis of research on the context, causes, stakeholders, and consequences of a situation or problem. Its primary purpose is to aid decision-makers and policymakers by presenting policy alternatives and suggestions. Policy briefs can have varied objectives; some advocate for a single policy option, while others propose multiple alternatives for consideration. It's important to ensure your approach aligns with the requirements of your assignment.
+                Regarding length and style:
+                A typical policy brief spans 4-6 pages and adopts a professional tone rather than an academic one, focusing on clear, jargon-free explanations.
+                As for the target audience:
+                Policy briefs are typically intended for readers in fields such as education, environment, politics, public health, or social work who are policymakers with a vested interest in the issue but may not possess an in-depth understanding of the subject matter. They seek the writer's insights and evidence-based recommendations.
+               </p>
+             </article> 
+             <steps v-bind:stepobject='policyBrief1'></steps>
+             <steps v-bind:stepobject='policyBrief2'></steps>
+             <steps v-bind:stepobject='policyBrief3'></steps>
+             <steps v-bind:stepobject='policyBrief4'></steps>
+             <steps v-bind:stepobject='policyBrief5'></steps>
+             <a class="f6 link dim br-pill ba ph3 pv2 mb2 dib light-purple" href="#top">Back to top ^</a>
         </template>
 
         <script src="//unpkg.com/vue@2.6.12/dist/vue.min.js"></script>
@@ -269,271 +387,750 @@
         <script src="//unpkg.com/bootstrap-vue@2.23.0/dist/bootstrap-vue-icons.js"></script>
         <script>
             // STEPS CONTENT IN JSON OBJECT FORMAT
-            var ressay1 = {
+            var researchEssays1 = {
                 step: '1',
-                heading: 'Clearly state your research question',
-                todos: {
-                    1: 'Review the guidelines and if you need further clarification, check with your professor',
-                    2: 'General Definition: A research essay is a piece of writing that provides information about a particular topic for which you have researched. Usually it is a topic that you are not familiar with, so investigation and assessment will be a large part of the process',
-                    3: 'For help developing your research question view "Taming Your Research Topic"'
-                },
-                linkURL: 'https://www.youtube.com/watch?v=lrT4U8Nq9OQ',
-                linkText: 'View video: Taming Your Research Topic',
-                percentage: '10'
+                heading: 'Getting Started',
+                truePercent: '10',
+                todos: '<div class="content"> \
+                <p><strong>A. Understand your assignment.</strong></p> \
+                <p>Take your time reading the instructions carefully and make sure you understand all the requirements, including the topic, format, length, and deadline, etc. Never hesitate to ask your instructor for clarification if something is unclear. To efficiently organize your time, break the assignment down into smaller activities and make a detailed timeline.</p> \
+                \
+                <p><strong>B.Initial investigation</strong> </p> \
+                <p>The initial investigation phase sets the foundation for your research essay and guides the direction of your study. There are a few key steps to starting an investigation for a research paper:</p> \
+                <ul> \
+                    <li>Choose a research subject or topic that interests you and meets the requirements of the assignment.</li> \
+                    <li>Do preliminary research to compile background data and evaluate whether reliable sources are accessible.</li> \
+                </ul> \
+                \
+                <p><strong>C. Narrow your topic</strong></p> \
+                <p>Evaluate each possible topic\'s importance, feasibility, and relevance. Seek advice from instructors if needed. Choose a specific research issue or subtopic that fits within the scope of your assignment, aligns with your research objectives, and has the potential for insightful analysis. Consider using traditional journalistic questions (who, what, where, when, why).</p> \
+                \
+                <p><strong>D. Form research question</strong></p> \
+                <p>Once a gap or problem is identified, develop it into a direct, precise question. Make sure your research question is clear, simple, and able to be answered. Additionally, it must be relevant and capable of expanding the field.</p> \
+            </div>',
+                percentage: '10',
+                truePercent: '10'
             };
 
-            var ressay2 = {
+
+            var researchEssays2 = {
                 step: '2',
-                heading: 'Examine your assignment and identify any requirements',
-                todos: {
-                    1: 'What types of resources do you need to use, such as books, peer-reviewed articles, or web resources?',
-                    2: 'How many resources do you need? For example it might require that you use three articles, or at least one web resource',
-                    3: 'What type of information is needed?  For example, do you need research articles, statistics, images?',
-                    4: 'To understand why you may choose one resource over another, view "Books, Videos and Articles - what are they good for anyway?"'
-                },
-                linkURL: 'https://www.youtube.com/watch?v=O72nYw2RVoE',
-                linkText: 'View video: Books, Videos and Articles',
-                percentage: '20'
+                heading: 'Research',
+                todos: '<div class="content"> \
+                <p><strong>A. Create research strategy</strong></p> \
+                <p>Depending on your research objectives, select suitable research methods, whether they be qualitative, quantitative, or mixed methodologies. Create an organized plan for collecting data, laying out the sources, tools, and procedures you are going to employ.</p> \
+                \
+                <p><strong>B. Find and assess resources</strong></p> \
+                <p>Using reliable search tools, academic databases, and libraries to find sources that are applicable to your subject of study. Consider the author\'s credentials, the source\'s reputation, and the source\'s publication date when evaluating sources. Books from credible publishers, government publications, and peer-reviewed journals are frequently reliable resources. Assess the source\'s approach and supporting data carefully as well to judge its quality and applicability to your research. You can create a well-supported and well-rounded research essay by cross-referencing data with several sources and being critical of biases or conflicts of interest.</p> \
+                \
+                <p><strong>C. Conduct research</strong></p> \
+                <p>As you begin your investigation, gather your data, make sure that you highlight important details, write down personal thoughts, and carefully organize them to keep track of your sources.</p> \
+            </div>',
+                percentage: '45',
+                truePercent: '35'
             };
 
-            var ressay3 = {
+            var researchEssays3 = {
                 step: '3',
-                heading: 'Define and explore your topic',
-                todos: {
-                    1: 'Use your research question to generate some manageable, focused questions that you will need to address in your research',
-                    2: 'Use the basic questions – who, what, where, why, when, and how – to help you',
-                    3: 'Decide what keywords you are going to use in your search'
-                },
-                linkURL: 'http://library.georgiancollege.ca/doingresearch/research-help',
-                linkText: 'Contact Research Help',
-                percentage: '30'
+                heading: 'Structuring your essay',
+                todos: '<div class="content">  \
+                <p><strong>A. Move from research to writing: Brainstorming</strong></p> \
+                <p>Analyze your sources attentively, considering their credibility and applicability. Then use this analysis to support your main points and arguments. As your thinking, remember to maintain a logical flow of thought, and use evidence from your study to back up your points of view.</p> \
+                \
+                <p><strong>B. Form a thesis statement</strong></p> \
+                <p>Keep in mind that a solid thesis statement forms the basis of your research essay, directing your research and providing your paper with a defined direction. Your thesis statement should be a succinct, declarative sentence that wraps up your essay\'s major idea and expresses your opinion on the topic. Make sure your thesis is both specific and debatable. It shouldn\'t just be a factual claim; rather, it should be a statement that encourages debate and analysis.</p> \
+                \
+                <p><strong>C. Make a detailed outline</strong></p> \
+                <p>Divide your writing into paragraphs or major points that support your thesis. Each section should be further broken into more narrowly focused subjects or arguments. Put in the main points, supporting details, and illustrations for each subtopic that you intend to use in your essay. This thorough outline not only serves as a clear road map for your writing but also makes sure you cover relevant content while keeping a logical flow throughout your research essay.</p> \
+            </div>',
+                percentage: '60',
+                truePercent: '15'
             };
 
-
-            var ressay4 = {
+            var researchEssays4 = {
                 step: '4',
-                heading: 'Determine the types of information that you need and where you will find it',
-                todos: {
-                    1: 'Where will you find this information? Is it on the web or in one of the library’s databases? Should you interview someone knowledgeable about your topic?',
-                    2: 'Do you need a book to provide a basic introduction to your topic?',
-                    3: 'Now you know what you’re looking for and where you’re going to look and can carry out your search'
-                },
-                linkURL: 'http://library.georgiancollege.ca/doingresearch/intro',
-                linkText: 'View Introduction to Research Guidelines',
-                percentage: '40'
+                heading: 'Writing the first draft',
+                todos: '<div class="content">\
+                <p>Write your ideas down on paper without worrying too much about accuracy.\
+                The first draft is about creating content and putting your thoughts into words.\
+                Pay attention to the logical flow from the beginning to the end of your essay.</p> </div>',
+                percentage: '80',
+                truePercent: '20'
             };
 
-            var ressay5 = {
+            var researchEssays5 = {
                 step: '5',
-                heading: 'Evaluate what you have found against your research question and assignment',
-                todos: {
-                    1: 'You need to think about relevance, authority, point of view, timeliness, and the context of what you find',
-                    2: 'Make sure you have all of the details necessary to reference the resources you are using in your final paper or product'
-                },
-                linkURL: 'http://library.georgiancollege.ca/c.php?g=4009&p=3777564',
-                linkText: 'View Evaluation Guidelines',
-                percentage: '50'
+                heading: 'Revising and proofreading',
+                todos: '<div class="content">\
+                <p><strong>A. Evaluate your first draft and conduct additional research as needed</strong></p> \
+                <p>Review your first draft and, if necessary, do further additional research.</p> \
+                \
+                <p><strong>B. Revise your draft</strong></p> \
+                <p>Review the organization of your essay to ensure that your thoughts are arranged clearly and coherently. Ensure that each paragraph supports your core argument. Pay attention to grammar, punctuation, and spelling to improve readability overall. Additionally, seek feedback from your peers or instructors and consider appropriate recommendations to improve your work.</p> \
+                \
+                <p><strong>C. Evaluate your second draft and rewrite as needed</strong></p> \
+                <p>Form a thesis statement. Focus on issues within the paragraph level, such as logic, analysis, flow, and transitions.</p> \
+                \
+                <p><strong>D. Proofread and put your paper into its final format</strong></p> \
+                <p>Read attentively to catch all of those little mistakes. Spend time making sure your paper follows the rules outlined in the suitable style guide. Remember the page numbers, titles, margins, reference lists, and citations. For additional help, check out the VinUniversity library website for LibGuides about citation resources.</p> \
+            </div>',
+                percentage: '100',
+                truePercent: '20'
             };
 
-            var ressay6 = {
-                step: '6',
-                heading: 'Create an essay outline',
-                todos: {
-                    1: 'Be sure to include a base for your introduction, body paragraphs and conclusion',
-                    2: 'Check out the Writing Centre’s guide on how to write introductions, conclusions, thesis statements and more'
-                },
-                linkURL: 'http://library.georgiancollege.ca/c.php?g=3998&p=815766',
-                linkText: 'Writing Centre Guide',
-                percentage: '60'
-            };
-
-            var ressay7 = {
-                step: '7',
-                heading: 'Write your first draft',
-                todos: {
-                    1: 'It’s ok if it’s not perfect the first time around!',
-                    2: 'For additional help on formatting your essay, email, drop in or make an appointment with the Writing Centre'
-                },
-                linkURL: 'http://library.georgiancollege.ca/c.php?g=3998&p=14040#s-lg-box-32451',
-                linkText: 'Contact Writing Centre or Book an Appointment',
-                percentage: '70'
-            };
-
-            var ressay8 = {
-                step: '8',
-                heading: 'Check over your work',
-                todos: {
-                    1: 'Proofread your work',
-                    2: 'Ask someone to proofread',
-                    3: 'Ensure you have not plagiarized and double check that you have cited properly'
-                },
-                linkURL: 'http://library.georgiancollege.ca/citing',
-                linkText: 'View APA Writing & Citing Guide',
-                percentage: '95'
-            };
-
-            var ressay9 = {
-                step: '9',
-                heading: 'Submit your Assignment',
-                todos: {
-                    1: 'Congratulations',
-                },
-                linkURL: 'https://gc.blackboard.com/webapps/login/',
-                linkText: 'Blackboard',
-                percentage: '100'
-            };
-
-            var presentation1 = {
+            var stemPosterPresentation1 = {
                 step: '1',
-                heading: 'Examine your assignment and identify any presentation requirements',
-                todos: {
-                    1: 'Review the guidelines and if you need further clarification, check with your professor',
-                    2: 'Clarify the expected length of your presentation',
-                    3: 'Know your setting and your audience',
-                    4: 'What technology and software will be needed?'
-                },
-                linkURL: 'http://www.georgiancollege.ca/student-services/information-technology/media-services-tab/',
-                linkText: 'Media Services Info',
-                percentage: '10'
+                heading: 'Content',
+                todos: '<div class="content"> \
+                <p><strong>A. Understand the assignment</strong></p> \
+                <p>Take your time reading the instructions carefully and make sure you understand all the requirements, including the topic, design, length, and deadline, etc. Never hesitate to ask your instructor for clarification if something is unclear. To efficiently organize your time, break the assignment down into smaller activities and make a detailed timeline.</p> \
+                \
+                <p><strong>B. Consider your audience</strong></p> \
+                <p>Be succinct if your audience comprises industry professionals. You are able to immediately get into the in-depth details of your research when presenting in your field because you will not have to define all technical terms or go over the basics. If your target audience is non-specialists, more background information is needed. Describe any technical terminology then Emphasize the significance of your research.</p> \
+                \
+                <p><strong>C. Create content</strong></p> \
+                <ul> \
+                <li>Conduct research: Choose a research subject or topic that interests you and meets the requirements of the assignment.  Do preliminary research to compile background data and evaluate whether reliable sources are accessible.</li> \
+                <li>Organize information: Usually, poster presentations should have about 750 words, including sections like Abstract, Introduction, Methods, Research, Discussion, Reference List. Remember to be concise since the poster has limited space.</li> \
+                </ul> \
+                </div>',
+                percentage: '50',
+                truePercent: '50'
             };
 
-            var presentation2 = {
+            var stemPosterPresentation2 = {
                 step: '2',
-                heading: 'Create an outline of your presentation',
-                todos: {
-                    1: 'This will include a greeting, an introduction, your major points and the conclusion'
-                },
-                linkURL: 'https://inside.senecacollege.ca/learningcentres/tipsheets2012/oral-skills/presentation-outline.html',
-                linkText: 'Seneca College\'s Presentation Outlines Tip Sheets',
-                percentage: '20'
+                heading: 'Design',
+                todos: '<div class="content"> \
+                <p><strong>A. Make a layout</strong></p> \
+                <p>Consider factors that can affect your choice of size and design, such as the timing, target audience, and venue of the presentation. Pick a design platform that works for you and the other team members. Make a layout plan for your poster. Remember that the mix of text and graphics is visually appealing. Organize the material in a logical flow, usually from left to right and top to bottom. For simple reading, use headings and bullet points. Include illustrations to support your main ideas, such as charts, diagrams, and pictures. Use a consistent font style and size and leave some white space for a tidy, uncomplicated appearance. Last but not least, don\'t forget to give your contact details for future discussion and referrals.</p> \
+                \
+                <p><strong>B. Create the poster</strong></p> \
+                <ul> \
+                <li>Tips on visual design: Use a clear, dark, legible font on a light background to make text easier to read. Use two to three complementing colors to increase visual impact. Keep the space on your poster clear. Consider eliminating a component if it does not enhance the clarity of your research. Data visualizations such as tables, charts, and other images are a common way to turn complex data sets into clear and accessible information. Copyright restrictions may apply if you use any text, image, or table that you did not make yourself.</li> \
+                <li>Tips for text: Aim for short and to-the-point sentences. Bolding can be used to emphasize a few key details but be careful not to overuse it.</li> \
+                </ul> \
+                \
+                <p><strong>C. Revising and proofreading</strong></p> \
+                <p>Review your presentation design, seek feedback from your peers or instructors and consider appropriate recommendations to improve your work.</p> \
+                </div>',
+                percentage: '90',
+                truePercent: '40'
             };
 
-            var presentation3 = {
+            var stemPosterPresentation3 = {
                 step: '3',
-                heading: 'Create a first draft and present it',
-                todos: {
-                    1: 'Find a friend or family member to watch you present your presentation and have them critique you',
-                    2: 'Discuss the pros and cons of your delivery and content'
-                },
-                linkURL: 'https://www.e-education.psu.edu/styleforstudents/c7_p4.html',
-                linkText: 'Tips on Presentation Skills and Powerpoint',
-                percentage: '50'
+                heading: 'Presentation',
+                todos: '<div class="content"> \
+                <p><strong>Prepare a speech for your poster. Consider the following points:</strong></p> \
+                <ul> \
+                <li>Speak clearly and project your voice.</li> \
+                <li>Make eye contact and interact with your audience.</li> \
+                <li>Gesture to appropriate visuals to emphasize points.</li> \
+                <li>Eliminate filler words such as "um", "like" and "you know."</li> \
+                </ul> \
+                <p>Interacting with people during your presentation is important for engagement and making an impact.</p> \
+                </div>',
+                percentage: '100',
+                truePercent: '10'
             };
 
-            var presentation4 = {
+            var criticalReflection1 = {
+                step: '1',
+                heading: 'Get Started',
+                todos: '<div class="content"> \
+                <p><strong>A. Understand the assignment</strong></p> \
+                <p>Take your time reading the instructions carefully and make sure you understand all the requirements, including the topic, format, length, and deadline, etc. Never hesitate to ask your instructor for clarification if something is unclear.</p> \
+                \
+                <p><strong>B. Narrow down the topic</strong></p> \
+                <p>A reflection assignment may address a wide range of subjects, such as a full course or specific sections of a course. To manage the task better, narrow the focus of your reflection to a specific issue or topic.</p> \
+                </div>',
+                percentage: '10',
+                truePercent: '10'
+            };
+
+            var criticalReflection2 = {
+                step: '2',
+                heading: 'Reflect',
+                todos: '<div class="content"> \
+                <ul> \
+                <li>Identify any biases or assumptions you may have by reflecting on your initial thoughts and feelings.</li> \
+                <li>Analyze the underlying assumptions, hypotheses, or concepts connected to the topic. Think about your individual experiences and how they relate to the course material.</li> \
+                <li>Engage in critical analysis by questioning the facts and arguments made.</li> \
+                <li>Sum up your findings, point out areas that need more research, and describe how the reflective process has changed your understanding or viewpoint on the topic.</li> \
+                </ul> \
+                </div>',
+                percentage: '40',
+                truePercent: '30'
+            };
+
+            var criticalReflection3 = {
+                step: '3',
+                heading: 'Organize',
+                todos: '<div class="content"> \
+                <p><strong>A. Develop a thesis statement</strong></p> \
+                <p>Your thesis statement should be a succinct, declarative sentence that wraps up your essay\'s major idea and expresses your opinion on the topic. Make sure your thesis is specific.</p> \
+                \
+                <p><strong>B. Outline the structure of your paper</strong></p> \
+                <p>Although a reflection essay can be organized in various ways, it often follows a structure similar to a research essay, with an introduction, thesis, body paragraphs, and a conclusion.</p> \
+                \
+                <p><strong>C. Organize relevant course or other material</strong></p> \
+                <p>Assembling and organizing course materials or other research is beneficial for your analysis. You can make use of these resources as you start your initial essay.</p> \
+                </div>',
+                percentage: '55',
+                truePercent: '15'
+            };
+
+            var criticalReflection4 = {
                 step: '4',
-                heading: 'Due',
-                todos: {
-                    1: 'Practice your revised presentation on the same and/or different people until you are content with the outcome',
-                    2: 'Don\'t forget to back up your slides'
-                },
-                linkURL: 'http://www.georgiancollege.ca/student-services/information-technology/contact-tab',
-                linkText: 'Contact IT Help',
-                percentage: '100'
+                heading: 'Writing the first draft',
+                todos: '<div class="content">\
+                <p>Write your ideas down on paper without worrying too much about accuracy. The first draft is about creating content and putting your thoughts into words. Pay attention to the logical flow from the beginning to the end of your essay.</p> \
+                </div>',
+                percentage: '80',
+                truePercent: '25'
             };
 
-            var video1 = {
+            var criticalReflection5 = {
+                step: '5',
+                heading: 'Revise and proofread',
+                todos: '<div class="content">\
+                <p><strong>A. Evaluate your first draft</strong></p> \
+                <p>Conduct additional research as needed. Review your first draft and, if necessary, do further additional research.</p> \
+                \
+                <p><strong>B. Revise your draft</strong></p> \
+                <p>Review the organization of your essay to ensure that your thoughts are arranged clearly and coherently. Ensure that each paragraph supports your core argument. Pay attention to grammar, punctuation, and spelling to improve readability overall. Additionally, seek feedback from your peers or instructors and consider appropriate recommendations to improve your work.</p> \
+                \
+                <p><strong>C. Evaluate your second draft and rewrite as needed</strong></p> \
+                <p>Focus on issues within the paragraph level, such as logic, analysis, flow, and transitions.</p> \
+                \
+                <p><strong>D. Proofread and put your paper into its final format</strong></p> \
+                <p>Read attentively to catch all of those little mistakes. Spend time making sure your paper follows the rules outlined in the suitable style guide. Remember the page numbers, titles, margins, reference lists, and citations. For additional help, check out the VinUniversity library website for LibGuides about citation resources.</p> \
+                </div>',
+                percentage: '100',
+                truePercent: '20'
+            };
+
+            var literatureReview1 = {
+                step: '1',
+                heading: 'Get started',
+                todos: '<div class="content"> \
+                <p><strong>A. Understand your assignment</strong></p> \
+                <p>Take your time reading the instructions carefully and make sure you understand all the requirements, including the topic, format, length, and deadline, etc. Never hesitate to ask your instructor for clarification if something is unclear. To efficiently organize your time, break the assignment down into smaller activities and make a detailed timeline.</p> \
+                \
+                <p><strong>B. Form a research question</strong></p> \
+                <p>After doing quick initial research, narrow down your topic to identify a particular problem. Then develop it into a direct, precise question. Make sure your research question is clear, simple, and able to be answered. Additionally, it must be relevant and capable of expanding the field.</p> \
+                </div>',
+                percentage: '10',
+                truePercent: '10'
+            };
+
+            var literatureReview2 = {
+                step: '2',
+                heading: 'Research',
+                todos: '<div class="content"> \
+                <p><strong>A. Create a research strategy</strong></p> \
+                <p>Depending on your research objectives, select suitable research methods, whether they be qualitative, quantitative, or mixed methodologies. Create an organized plan for collecting data, laying out the sources, tools, and procedures you are going to employ.</p> \
+                \
+                <p><strong>B. Research</strong></p> \
+                <p>Using reliable search tools, academic databases, and libraries to find sources that are applicable to your subject of study.</p> \
+                \
+                <p><strong>C. Evaluate sources for alignment with your topic</strong></p> \
+                <p>After collecting resources, evaluate and appraise the content to fit with your topic. Consider the author\'s credentials, the source\'s reputation, and the source\'s publication date when evaluating sources. Books from credible publishers, government publications, and peer-reviewed journals are frequently reliable resources. Assess the source\'s approach and supporting data carefully as well to judge its quality and applicability to your research.</p> \
+                \
+                <p><strong>D. Research critically</strong></p> \
+                <p>Pay attention to the research techniques and supporting data utilized in the papers, articles, or any material you are reading as you go along, assessing their validity and applicability to your own research. Compare and contrast various sources, looking for similarities and differences. Remember to take notes or highlight any details that emphasize important points, discoveries, and your own thoughts.</p> \
+                </div>',
+                percentage: '40',
+                truePercent: '30'
+            };
+
+            var literatureReview3 = {
+                step: '3',
+                heading: 'Organize your literature review',
+                todos: '<div class="content"> \
+                <p><strong>A. Identify themes and organize</strong></p> \
+                <p>Create a citation management system as you collect pertinent sources to keep track of your references, such as Zotero, Mendeley, or EndNote. After gathering your sources, group them into themes or subtopics to identify common patterns and gaps. Look for organizational patterns like same ideas, theories, themes, corporate structures, regional emphasis, data set, historical development, problem-solution.</p> \
+                \
+                <p><strong>B. Thesis statement</strong></p> \
+                <p>Write a thesis statement that summarizes a general picture of the available research on the topic, using the themes and conclusions you established in the earlier rounds. Your thesis statement should be a succinct, declarative sentence that wraps up your essay\'s major idea and expresses your opinion on the topic.</p> \
+                </div>',
+                percentage: '60',
+                truePercent: '20'
+            };
+
+            var literatureReview4 = {
+                step: '4',
+                heading: 'First draft',
+                todos: '<div class="content"> \
+                <p><strong>A. Verify the style guide requirements</strong></p> \
+                <p>For more information on the required style guide, consult your course curriculum or your instructor. Common citation styles include the Chicago style guide, APA style guide, IEEE style guide, MLA style guide. Check out the VinUniversity library website for LibGuides about citation resources.</p> \
+                \
+                <p><strong>B. Introduction</strong></p> \
+                <p>Introduce the broad topic and its importance to the academic field. Gradually narrow down the review\'s focus, mentioning the major issues, differences, and gaps in the literature. Indicate your review\'s aim/ thesis statement. Give readers a roadmap for what to expect in the next parts by explaining the organization of your review.</p> \
+                \
+                <p><strong>C. Body paragraphs</strong></p> \
+                <p>Each paragraph should begin with a topic sentence that clearly states the major idea or theme you\'ll be addressing. Then, give a summary or analysis of the literature on that particular subject, stressing the main conclusions, hypotheses, or arguments from the sources you have read. Link the sources together and make similarities or contrasts if needed. Maintain a coherent flow from one paragraph to the next while supporting your views with evidence and examples from the literature. Remember to give proper credit to your sources and assess the reliability and significance of each reference.</p> \
+                \
+                <p><strong>D. Conclusion</strong></p> \
+                <p>Restate the main research question or review\'s goal. Briefly summarize the major topics, recurring patterns, and significant research covered in your literature review. Emphasize the importance of the readings you\'ve done and how they\'ve shaped your understanding of the subject as a whole. Point out any shortcomings or gaps in the current body of knowledge and offer potential directions for further study if needed.</p> \
+                </div>',
+                percentage: '80',
+                truePercent: '20'
+            };
+
+            var literatureReview5 = {
+                step: '5',
+                heading: 'Revising and proofreading',
+                todos: '<div class="content"> \
+                <p><strong>A. Evaluate your first draft and conduct additional research as needed</strong></p> \
+                <p>Review your first draft and, if necessary, do further additional research.</p> \
+                \
+                <p><strong>B. Revise your draft</strong></p> \
+                <p>Review the organization of your essay to ensure that your thoughts are arranged clearly and coherently. Ensure that each paragraph supports your core argument. Pay attention to grammar, punctuation, and spelling to improve readability overall. Additionally, seek feedback from your peers or instructors and consider appropriate recommendations to improve your work.</p> \
+                \
+                <p><strong>C. Evaluate your second draft and rewrite as needed</strong></p> \
+                <p>Focus on issues within the paragraph level, such as logic, analysis, flow, and transitions.</p> \
+                \
+                <p><strong>D. Proofread and put your paper into its final format</strong></p> \
+                <p>Read attentively to catch all of those little mistakes. Spend time making sure your paper follows the rules outlined in the suitable style guide. Remember the page numbers, titles, margins, reference lists, and citations. For additional help, check out the VinUniversity library website for LibGuides about citation resources.</p> \
+                </div>',
+                percentage: '100',
+                truePercent: '20'
+            };
+            
+            var articleReview1 = {
+                step: '1',
+                heading: 'Get started',
+                todos: '<div class="content"> \
+                <p><strong>A. Understand the assignment</strong></p> \
+                <p>Take your time reading the instructions carefully and make sure you understand all the requirements, including the topic, format, length, and deadline, etc. Never hesitate to ask your instructor for clarification if something is unclear. To efficiently organize your time, break the assignment down into smaller activities and make a detailed timeline.</p> \
+                \
+                <p><strong>B. Choose your research article</strong></p> \
+                <p>Use the article that the instructor has provided or look up academic papers on the relevant subject. Pick three to five articles to read. After reading the abstract and introduction of each article, choose one article that is relevant to the course, is of interest to you, and you understand.</p> \
+                </div>',
+                percentage: '10',
+                truePercent: '10'
+            };
+
+            var articleReview2 = {
+                step: '2',
+                heading: 'Read the article',
+                todos: '<div class="content"> \
+                <p><strong>A. First reading</strong></p> \
+                <p>Determine the author’s research question, thesis, and findings.</p> \
+                \
+                <p><strong>B. Subsequent reading</strong></p> \
+                <p>Analyze the author\'s methods, findings, techniques, and conclusions. Throughout the reading process, remember to take notes or highlight any details that emphasize important points, discoveries, and your own thoughts.</p> \
+                </div>',
+                percentage: '35',
+                truePercent: '25'
+            };
+
+            var articleReview3 = {
+                step: '3',
+                heading: 'Evaluate the article',
+                todos: '<div class="content"> \
+                <p>Evaluate the author\'s credentials and any bias that might exist. Think about the article\'s relevance to your field of study and its contribution to the field. Analyze the writing\'s clarity, the way the concepts are presented, and the references that were used to support it. Analyze the persuasiveness of the arguments and the reliability of the supporting evidence. Finally, provide a fair analysis, pointing out the article\'s advantages and disadvantages while, if required, making helpful recommendations for development. </p> \
+                <ul> \
+                <li>Who conducted this research and what are his or her credentials?</li> \
+                <li>What is the aim of this study?</li> \
+                <li>Does the author identify existing literature on the subject?</li> \
+                <li>What do the results suggest for future research?</li> \
+                <li>Does the author mention the study\'s limitations?</li> \
+                <li>Do you observe any further shortcomings, biases, or oversights?</li> \
+                <li>Does the author successfully support the thesis?</li> \
+                </ul> \
+                </div>',
+                percentage: '55',
+                truePercent: '20'
+            };
+
+            var articleReview4 = {
+                step: '4',
+                heading: 'Plan and write',
+                todos: '<div class="content"> \
+                <p><strong>A. Citation style for the article</strong></p> \
+                <p>For more information on the required style guide, consult your course curriculum or your instructor. Common citation styles include the Chicago style guide, APA style guide, IEEE style guide, MLA style guide. Check out the VinUniversity library website for LibGuides about citation resources.</p> \
+                \
+                <p><strong>B. Plan the first draft</strong></p> \
+                <p>List the points to include in your summary of the article. Outline your arguments to further develop the article review. Develop a draft thesis statement. A thesis statement should summarize a general picture of the available research on the topic, using the themes and conclusions you established in the earlier rounds. Your thesis statement should be a succinct, declarative sentence that wraps up your essay\'s major idea and expresses your opinion on the topic.</p> \
+                \
+                <p><strong>C. First draft</strong></p> \
+                <p>Write your ideas down on paper without worrying too much about accuracy. The first draft is about creating content and putting your thoughts into words. Pay attention to the logical flow from the beginning to the end of your essay.</p> \
+                </div>',
+                percentage: '85',
+                truePercent: '30'
+            };
+
+            var articleReview5 = {
+                step: '5',
+                heading: 'Revising and proofreading',
+                todos: '<div class="content"> \
+                <p><strong>A. Evaluate your first draft and conduct additional research as needed</strong></p> \
+                <p>Review your first draft and, if necessary, do further additional research.</p> \
+                \
+                <p><strong>B. Revise your draft</strong></p> \
+                <p>Review the organization of your essay to ensure that your thoughts are arranged clearly and coherently. Ensure that each paragraph supports your core argument. Pay attention to grammar, punctuation, and spelling to improve readability overall. Additionally, seek feedback from your peers or instructors and consider appropriate recommendations to improve your work.</p> \
+                \
+                <p><strong>C. Evaluate your second draft and rewrite as needed</strong></p> \
+                <p>Focus on issues within the paragraph level, such as logic, analysis, flow, and transitions.</p> \
+                \
+                <p><strong>D. Proofread and put your paper into its final format</strong></p> \
+                <p>Read attentively to catch all of those little mistakes. Spend time making sure your paper follows the rules outlined in the suitable style guide. Remember the page numbers, titles, margins, reference lists, and citations. For additional help, check out the VinUniversity library website for LibGuides about citation resources.</p> \
+                </div>',
+                percentage: '100',
+                truePercent: '15'
+            };
+            
+            var annotatedBibliography1 = {
                 step: '1',
                 heading: 'Understand your assignment',
-                todos: {
-                    1: 'Review the guidelines and if you need further clarification, check with your professor',
-                    2: 'Make sure you understand what your topic is',
-                    3: 'There are many different types of video assignments so be sure to clarify what is expected of you'
-                },
-                linkURL: 'https://gc.blackboard.com/webapps/login',
-                linkText: 'Blackboard',
-                percentage: '5'
+                todos: '<div class="content"> \
+                <p>Annotated bibliography assignments are commonplace, yet their structure and breadth can differ based on their intended purpose and the preferences of the instructor. It\'s crucial to be well-informed about the specific requirements for your assignment.</p> \
+                \
+                <p>Each entry within an annotated bibliography comprises two essential components:</p> \
+                <ul> \
+                <li>A. The citation: This presents bibliographic information concerning the source, including details like the author, title, and publication date. These particulars are formatted following a designated citation style, such as APA, IEEE, Chicago, Notes & Bibliography, or MLA.</li> \
+                <li>B. The annotation: Typically consisting of one to two paragraphs, the annotation serves the purpose of describing and assessing the source.</li> \
+                </ul> \
+                <p>If there are aspects of the assignment that are unclear, do not hesitate to seek clarification from your instructor or teaching assistant.</p> \
+                </div>',
+                percentage: '5',
+                truePercent: '5'
             };
 
-            var video2 = {
+            var annotatedBibliography2 = {
                 step: '2',
-                heading: 'Determine the equipment and resources you will need',
-                todos: {
-                    1: 'If you need special equipment be sure to book this in advance'
-                },
-                linkURL: 'http://www.georgiancollege.ca/student-services/information-technology/media-services-tab',
-                linkText: 'Media Services Info',
-                percentage: '10'
+                heading: 'Choose a topic for your bibliography',
+                todos: '<div class="content"> \
+                <p>Your topic should interest you and match the scope and requirements of the assignment. To write a strong paper, you must have a focused and specific topic. Achieving this involves developing, choosing, and further refining your topic.</p> \
+                \
+                <p><b>A. Developing Your Topic:</b></p> \
+                <ul> \
+                <li>Conduct research, brainstorm ideas, and discuss them with others to strengthen your topic.</li> \
+                <li>Preliminary research reveals what experts in the field are interested in.</li> \
+                <li>Brainstorming techniques include freewriting, asking questions about your topic, and creating topic maps.</li> \
+                <li>Engaging in discussions with others can help you view your ideas from a reader\'s perspective.</li> \
+                </ul> \
+                \
+                <p><b>B. Narrowing Your Topic:</b></p> \
+                <ul> \
+                <li>Narrowing down your topic makes your work more manageable and increases the likelihood of a successful paper.</li> \
+                <li>A well-crafted paper delves deep into a specific aspect of a broader issue.</li> \
+                <li>A concrete topic is more manageable. As you narrow your focus, the subject matter becomes more precise.</li> \
+                <li>Add specific details to your subtopics to further refine your topic.</li> \
+                </ul> \
+                <p><b>Tip:</b> To ensure your topic is narrow enough, keep narrowing it down until it becomes more specific. You can employ traditional journalistic questions (Who, What, Where, When, Why) to help refine your topic further.</p> \
+                </div>',
+                percentage: '15',
+                truePercent: '10'
             };
 
-            var video3 = {
+            var annotatedBibliography3 = {
                 step: '3',
-                heading: 'Research and evaluate',
-                todos: {
-                    1: 'Research your topic and evaluate whether or not it is a useful source for your video',
-                    2: 'Gather any necessary music, images or content',
-                    3: 'Be sure to keep track of your sources in order to cite later on'
-                },
-                linkURL: 'http://library.georgiancollege.ca/doingresearch/research-help',
-                linkText: 'Contact Research Help',
-                percentage: '20'
+                heading: 'Find sources',
+                todos: '<div class="content"> \
+                <p>The materials you choose to incorporate in your annotated bibliography should be closely related to the overarching topic or theme. Here are three suggestions to assist you in commencing and staying on course:</p> \
+                <p><b>A. Refer to a research guide relevant to your subject.</b></p> \
+                <p><b>B. Gather the materials that exhibit promise.</b></p> \
+                <p>If they are available online, save links or download them directly from the catalog, databases, or the web. For print materials such as books or government documents, submit requests through the catalog by providing your last name and the 14-digit barcode number on your Watcard. You can specify the library to which you want the item(s) to be delivered.</p> \
+                \
+                <p><b>C. Maintain a record of essential citation details for each source,</b> including the author, article title, journal title, and publication date. This information will be indispensable in constructing comprehensive citations for the items featured in your annotated bibliography.</p> \
+                </div>',
+                percentage: '40',
+                truePercent: '25'
             };
 
-            var video4 = {
+            var annotatedBibliography4 = {
                 step: '4',
-                heading: 'Create an outline',
-                todos: {
-                    1: 'Create a script and/or storyboard to plan out your video ahead of time',
-                    2: 'General definition of storyboard – images that are laid out to represent sequence of events within a video'
-                },
-                linkURL: 'https://resources.goanimate.com/what-is-a-storyboard-and-why-do-you-need-one',
-                linkText: 'Video: GoAnimate Storyboard Inspiration',
-                percentage: '30'
+                heading: 'Evaluate your sources',
+                todos: '<div class="content"> \
+                <p>Review the materials you\'ve gathered and make choices about which ones to incorporate into your bibliography. Evaluate their content and quality to determine if they merit inclusion. Utilizing the RADAR method can assist you in assessing their relevance, authority, publication date, accuracy, and the purpose behind their creation.</p> \
+                \
+                <p>While going through your sources, make note of significant aspects like the primary arguments or hypotheses, the theoretical frameworks employed by the author, their research design, and the outcomes or conclusions. Identify any aspects that raise questions, such as weak links in an argument or a limited sample size in a study. Also, highlight the strengths of the work and how it specifically contributes to your research topic or question.</p> \
+                </div>',
+                percentage: '55',
+                truePercent: '15'
             };
 
-            var video5 = {
+            var annotatedBibliography5 = {
                 step: '5',
-                heading: 'Pre-production finalizations',
-                todos: {
-                    1: 'Make any necessary revisions to your script/storyboard',
-                    2: 'Rehearse your scenes',
-                    3: 'Gather any props needed'
-                },
-                linkURL: 'http://ra.ocls.ca/ra/login.aspx?url=http://fod.infobase.com/PortalPlaylists.aspx?wID=103261&xtid=35877',
-                linkText: 'Video: Digital Movie Maker - Guidance from an Expert',
-                percentage: '40'
+                heading: 'Write and revise',
+                todos: '<div class="content"> \
+                <p>Generate citations for each of the sources following the specified citation style, such as APA, Chicago, or MLA. Subsequently, for each citation, compose a brief annotation by drawing upon your notes about the source. It\'s essential to both summarize and assess the source in the following ways:</p> \
+                <ol> \
+                <li>Provide an overview of the source\'s content and its primary focus.</li> \
+                <li>Evaluate the methods, conclusions, or reliability of the source.</li> \
+                <li>Express your own thoughts and impressions of the work, while elucidating why it merits inclusion in your research.</li> \
+                </ol> \
+                <p>Once you\'ve written a complete draft, set it aside for a period. Upon your return, revisit your annotations and contemplate how to enhance them. Consider whether each item significantly contributes to your research topic. Can you make your annotations clearer or more concise? Have you overlooked any critical points? Do they flow logically and cohesively?</p> \
+                </div>',
+                percentage: '85',
+                truePercent: '30'
             };
 
-
-
-            var video6 = {
+            var annotatedBibliography6 = {
                 step: '6',
-                heading: 'Begin production',
-                todos: {
-                    1: 'Film shots according to your script/storyboard',
-                    2: 'For more tips, browse our video production books mostly found under the call number: PN 1992'
-                },
-                linkURL: 'http://ra.ocls.ca/ra/login.aspx?inst=georgian&url=http://search.ebscohost.com.eztest.ocls.ca/login.aspx?direct=true&bquery=SU+((video+AND+recordings+AND+production+AND+%26quot%3band%26quot%3b+AND+direction))&cli0=FC&clv0=Y&type=1&site=eds-live&scope=site',
-                linkText: 'Video Production Booklist',
-                percentage: '50'
+                heading: 'Proofread and polish',
+                todos: '<div class="content"> \
+                <p>Once you are content with the quality of your annotations, set your assignment aside once more. Upon revisiting it, your objective is to identify and rectify any punctuation, grammar, and other mechanical errors. It is advisable to review your work multiple times and, at a minimum, proofread from a physical printout.</p> \
+                <p>Make certain of the following:</p> \
+                <ol> \
+                <li>Each entry\'s citation is thorough and adheres to the specified bibliographic style.</li> \
+                <li>Every annotation is coherent and devoid of errors.</li> \
+                <li>Your paper is correctly formatted and aligns with the stipulated assignment criteria.</li> \
+                </ol> \
+                </div>',
+                percentage: '100',
+                truePercent: '15'
             };
 
+            var labReport1 = {
+                step: '1',
+                heading: 'Write your introduction',
+                todos: '<div class="content"> \
+                <p>The introduction to a lab report usually includes the following elements:</p> \
+                <ol> \
+                <li>Background information about scientific concepts related to the lab;</li> \
+                <li>The lab\'s purpose;</li> \
+                <li>The lab\'s objective(s);</li> \
+                <li>Your hypothesis for the experiment;</li> \
+                <li>Reasons for your hypothesis.</li> \
+                </ol> \
+                </div>',
+                percentage: '10',
+                truePercent: '10'
+            };
 
-            var video7 = {
+            var labReport2 = {
+                step: '2',
+                heading: 'Write your materials and methods',
+                todos: '<div class="content"> \
+                <p>Craft a narrative outlining the methodology you employed. While depicting your procedure, make reference to the equipment and analytical tools you utilized. Your objective is to offer a concise, focused account.</p> \
+                <p>Include only the essential particulars required for replicating the experiment. Omit any discussion of procedures and tools that your peers would already be acquainted with.</p> \
+                </div>',
+                percentage: '15',
+                truePercent: '5'
+            };
+
+            var labReport3 = {
+                step: '3',
+                heading: 'Develop tables and graphs. Write a summary of your results',
+                todos: '<div class="content"> \
+                <p>What were your observations? Your aim is to present the trends, patterns, and connections within your data. The initial step involves creating tables and graphs to construct a narrative illustrating your observations. Subsequently, integrate these visual representations into a written account of your findings. It\'s essential to focus on what you saw, rather than delving into explanations of why it occurred. Your results section should encompass the following:</p> \
+                <ol> \
+                <li>An initial summary that outlines your noteworthy observations and the trend(s) you have identified.</li> \
+                <li>Body paragraphs where you elucidate your observations.</li> \
+                <li>Visual aids, such as graphs, tables, and figures, to substantiate your observations.</li> \
+                </ol> \
+                </div>',
+                percentage: '40',
+                truePercent: '25'
+            };
+
+            var labReport4 = {
+                step: '4',
+                heading: 'Discussion section prep. Analyze your results',
+                todos: '<div class="content"> \
+                <p>Now, it\'s time to delve deeper into the meaning of your results. Why did you obtain the specific results you did? How do these results deviate from those in previous studies, other class experiments, or your classmates\' findings? What are the implications of these distinctions? Employ the following approaches to analyze the significance of your results:</p> \
+                <ol> \
+                <li>Review your lab notes to gain further insight.</li> \
+                <li>Contrast your findings with those of your peers in the class.</li> \
+                <li>Seek out and examine articles or other relevant materials linked to your laboratory experiment.</li> \
+                </ol> \
+                </div>',
+                percentage: '55',
+                truePercent: '15'
+            };
+
+            var labReport5 = {
+                step: '5',
+                heading: 'Write your discussion',
+                todos: '<div class="content"> \
+                <p>Utilize the research and analysis you conducted in Step 4 to engage in a critical reflection on your experiment and its outcomes. It\'s advisable to consult your lab manual, Teaching Assistant (TA), or instructor for specific guidelines on what to include. A discussion section can encompass the following components:</p> \
+                <ol> \
+                <li>A summary of your findings.</li> \
+                <li>An explanation of your findings (What led to the specific results you obtained?).</li> \
+                <li>A comparison between your results and prior research or alternative findings.</li> \
+                <li>A consideration of the limitations and weaknesses of your experiment.</li> \
+                <li>An evaluation of the significance of the results (What is the meaning of these outcomes? Why do they matter?).</li> \
+                <li>Suggestions or recommendations for future research endeavors.</li> \
+                </ol> \
+                </div>',
+                percentage: '65',
+                truePercent: '10'
+            };
+
+            var labReport6 = {
+                step: '6',
+                heading: 'Write your conclusion',
+                todos: '<div class="content"> \
+                <p>Compose a concise conclusion for your lab report by:</p> \
+                <ol> \
+                <li>Summarizing the key findings.</li> \
+                <li>Relating the results to the experiment\'s objectives.</li> \
+                <li>Stating whether the data supports your hypothesis.</li> \
+                <li>Mentioning any unexpected results or limitations.</li> \
+                <li>Explaining the broader implications of the findings, if applicable.</li> \
+                <li>Ending with a brief statement that ties back to the experiment\'s purpose.</li> \
+                </ol> \
+                </div>',
+                percentage: '75',
+                truePercent: '10'
+            };
+
+            var labReport7 = {
                 step: '7',
-                heading: 'Post-prodution edits',
-                todos: {
-                    1: 'Make any edits as necessary',
-                    2: 'Preview your video and fix any problems that you may encounter'
-                },
-                linkURL: 'http://ra.ocls.ca/ra/login.aspx?inst=georgian&url=http://search.ebscohost.com.eztest.ocls.ca/login.aspx?direct=true&bquery=SU+((video+AND+recordings+AND+production+AND+%26quot%3band%26quot%3b+AND+direction))&cli0=FC&clv0=Y&type=1&site=eds-live&scope=site',
-                linkText: 'Video Production Booklist',
-                percentage: '90'
+                heading: 'Write the abstract. Prepare a bibliography',
+                todos: '<div class="content"> \
+                <p>An abstract, located at the beginning of your paper, serves as a concise summary of your report, typically spanning 100-200 words. The abstract should encompass the following details:</p> \
+                <ol> \
+                <li>The lab\'s objectives and your primary hypothesis.</li> \
+                <li>A succinct outline of the procedures followed.</li> \
+                <li>A summary of the overall findings and their alignment with your initial hypothesis.</li> \
+                <li>An exposition of the conclusions drawn.</li> \
+                <li>The scientific principles you gained insights into during the lab.</li> \
+                </ol> \
+                <p>In your bibliography, make sure to include reference details for all the sources employed in crafting your report. Format it in accordance with the citation style guide recommended in your lab manual or by your instructor.</p> \
+                </div>',
+                percentage: '85',
+                truePercent: '10'
             };
 
-            var video8 = {
+            var labReport8 = {
                 step: '8',
-                heading: 'Due',
-                todos: {
-                    1: 'Edit any accompanying documents that will need to be handed in to your instructor, such as scripts, storyboards, references, etc.',
-                    2: 'Be sure to back up your video'
-                },
-                linkURL: 'http://library.georgiancollege.ca/citing',
-                linkText: 'View APA Citing & Writing Guide',
-                percentage: '100'
+                heading: 'Put the lab report in final form. Revise and edit',
+                todos: '<div class="content"> \
+                <p>Before finalizing your document, scrutinize the formatting, images, and references. For precise formatting instructions, refer to your lab manual and consult with your Teaching Assistant (TA) for additional guidance.</p> \
+                <p>As is the case with all forms of writing, the initial draft of your lab report may contain omissions, issues with structure and lucidity, and grammatical or spelling mistakes. To produce a successful report, dedicate time to the revision and editing process.</p> \
+                </div>',
+                percentage: '100',
+                truePercent: '15'
             };
 
+            var policyBrief1 = {
+                step: '1',
+                heading: 'Get started',
+                todos: '<div class="content"> \
+                <p><strong>A. Understand Your Assignment</strong></p> \
+                <p>Ensure a comprehensive understanding of your assignment by discerning its specific requirements. Meticulously read the assignment instructions to discern the intended purpose, target audience, scope, format, and length.</p> \
+                <p>It\'s important to note that policy briefs can manifest in diverse forms. To gather ideas and inspiration, consider exploring sample policy briefs from various organizations.</p> \
+                <p><strong>B. Familiarize Yourself with the Subject Matter</strong></p> \
+                <p>In some instances, you may receive a designated topic and problem, while in others, you might have the freedom to select your own. Irrespective of the scenario, it\'s imperative to engage in preliminary reading about the subject and issue at hand.</p> \
+                <p>Employing the classic journalistic interrogatives (who, what, where, when, why) can serve as a guide to pinpointing the focal points of your policy brief, facilitating your research and analysis.</p> \
+                </div>',
+                percentage: '10',
+                truePercent: '10'
+            };
 
+            var policyBrief2 = {
+                step: '2',
+                heading: 'Research your policy issue',
+                todos: '<div class="content"> \
+                <p><strong>A. Develop Your Research Strategy</strong></p> \
+                <ol> \
+                <li>List the terms and concepts linked to your policy issue.</li> \
+                <li>Identify the core concepts among them, which will be the keywords you use when searching library catalogs and databases to uncover pertinent books, journal articles, and various reports.</li> \
+                </ol> \
+                <p><strong>B. Locate and Assess Your Sources</strong></p> \
+                <p>Ensure the sources you select are both pertinent and current. It\'s crucial to incorporate academically reputable sources, such as peer-reviewed books and journal articles, along with materials like government publications, documents from policy institutes (think tanks), and content that conveys the perspectives of individuals or groups affected by the issue, particularly those marginalized or mistreated in some manner.</p> \
+                <p>Remember that not all sources possess equal relevance or accurately represent the subject matter.</p> \
+                <p><strong>C. Choose and Systematize Your Discoveries</strong></p> \
+                <p>Accumulate your research findings and maintain a meticulous record of your sources throughout the process.</p> \
+                </div>',
+                percentage: '45',
+                truePercent: '35'
+            };
+
+            var policyBrief3 = {
+                step: '3',
+                heading: 'Begin to organize your brief',
+                todos: '<div class="content"> \
+                <p>Utilize your policy brief outline (from Step 1B) to populate the sections of your policy brief with preliminary ideas, which can be in point form. It\'s worth noting that, although the executive summary traditionally comes at the beginning, it may be more practical to tackle it towards the end of the process.</p> \
+                <p><strong>A. Identifying Your Audience</strong></p> \
+                <ul> \
+                <li>Who is your target audience and who do you need to persuade? (This will impact your tone and evidence presentation.)</li> \
+                <li>Define the informed but non-specialist readers of your brief.</li> \
+                <li>Predict how these readers perceive the issue and discuss it.</li> \
+                <li>What key message do you aim to convey that will resonate with them? Summarize this in two sentences to maintain focus.</li> \
+                </ul> \
+                <p><strong>B. Problem Statement</strong></p> \
+                <ul> \
+                <li>Define the problem\'s scope and magnitude.</li> \
+                <li>What evidence can you provide to illustrate its significance, urgency, or scale?</li> \
+                <li>Identify the facts, graphs, images, quotes, statistics, or maps that can support your arguments.</li> \
+                </ul> \
+                <p><strong>C. Stakeholders</strong></p> \
+                <ul> \
+                <li>Enumerate all stakeholders and describe how the issue affects them.</li> \
+                <li>Consider the varied perspectives, especially those of marginalized or smaller communities and underrepresented voices, which may differ from government officials or corporate leaders. Include these perspectives if pertinent to the issue and your recommendations.</li> \
+                </ul> \
+                <p><strong>D. Policy Options</strong></p> \
+                <ul> \
+                <li>Determine if you will present multiple options with a recommendation or just a single option.</li> \
+                <li>Prepare arguments and evidence to substantiate your case.</li> \
+                <li>Clarify how the option(s) will impact various stakeholders.</li> \
+                </ul> \
+                <p><strong>E. Recommendations</strong></p> \
+                <ul> \
+                <li>Specify the necessary actions or measures and the responsible parties for instigating change.</li> \
+                <li>Decide if you will conclude with a call to action, which might be placed in the conclusion section if applicable.</li> \
+                </ul> \
+                <p><strong>F. Sources Consulted</strong></p> \
+                <ul> \
+                <li>Confirm the inclusion of a list of credible references supporting your points.</li> \
+                <li>Ensure that these references encompass a range of perspectives.</li> \
+                </ul> \
+                <p><strong>G. Executive Summary</strong></p> \
+                <ul> \
+                <li>Review if the executive summary captures key aspects of the rationale and problem.</li> \
+                <li>Evaluate whether the summary effectively entices readers to delve deeper into the brief.</li> \
+                </ul> \
+                </div>',
+                percentage: '65',
+                truePercent: '20'
+            };
+
+            var policyBrief4 = {
+                step: '4',
+                heading: 'Write the first draft',
+                todos: '<div class="content"> \
+                <p>It\'s time to start writing! When you\'re working on your first draft, your primary aim is to get your ideas onto paper. Don\'t worry if your thoughts aren\'t fully developed at this stage. Release the desire for perfection and write swiftly. You can refine and revise your work later on.</p> \
+                </div>',
+                percentage: '85',
+                truePercent: '20'
+            };
+
+            var policyBrief5 = {
+                step: '5',
+                heading: 'Revise and proofread',
+                todos: '<div class="content"> \
+                <p><strong>A. Assess Your First Draft and Perform Additional Research as Necessary</strong></p> \
+                <ul> \
+                <li>Examine your initial draft to identify any gaps or areas where your arguments lack sufficient evidence.</li> \
+                <li>If you identify deficiencies, conduct further research to bolster your arguments.</li> \
+                </ul> \
+                <p><strong>B. Revise Your Draft</strong></p> \
+                <ul> \
+                <li>Print out a hard copy of your brief and work from it.</li> \
+                <li>Thoroughly read through your document, initially focusing on higher-order issues like organization, structure, evidence, and analysis.</li> \
+                </ul> \
+                <p><strong>C. Evaluate Your Second Draft and Make Revisions</strong></p> \
+                <ul> \
+                <li>Refine your revision process by concentrating on paragraph-level matters, such as sentence flow and transitions.</li> \
+                </ul> \
+                <p><strong>D. Proofread the Final Version of Your Brief</strong></p> \
+                <ul> \
+                <li>In this final step, carefully review your work to catch minor errors. Utilize effective proofreading techniques.</li> \
+                <li>Ensure your brief adheres to the style guide recommended in your assignment or by your instructor. Pay attention to details like titles, margins, and page numbers. Confirm whether a cover sheet is necessary.</li> \
+                <li>Your list of sources should encompass key references used in crafting your brief. Adhere to the citation style guide specified in your assignment or by your instructor.</li> \
+                <li>Consider using reference management software such as RefWorks and Write-N-Cite to help manage your citations as you write. These tools are valuable for building your bibliography.</li> \
+                </ul> \
+                </div>',
+                percentage: '100',
+                truePercent: '15'
+            };
 
             // TEMPLATE for <steps>
             var Step = {
@@ -573,30 +1170,29 @@
                         return dueDate.toDateString();
                     },
                 },
-
+                
                 template: '<b-container class="steps">\
                 <b-row>\
                     <b-col>\
-                        <b-button block v-b-toggle.collapse-3 size="lg" class="m-1"><b>Step </b> {{ stepobject.step }}: {{ stepobject.heading }} by {{ calcDueDate }}</b-button>\
+                        <b-button block v-b-toggle.collapse-3 size="lg" class="m-1"><b>Step {{ stepobject.step }}: {{ stepobject.heading }}.</b> Finish by {{ calcDueDate }}</b-button>\
                         <b-collapse visible id="collapse-3">\
                             <b-card>\
                                 <b-card-text>\
-                                    <li>Review the guidelines and if you need further clarification, check with your course professor.</li>\
-                                    <li v-for="(value, key) in stepobject.todos">\
-                                        {{value}}\
-                                    </li>\
-                                    <li>For help developing your research question view "Taming Your Research Topic".</li>\
+                                    <p><b> (Percent time spent on this step: {{ stepobject.truePercent}}%) </b></p>\
+                                    <p v-html="stepobject.todos"> </p>\
                                 </b-card-text>\
-                                <b-button variant="outline-info">\
+                                <!-- <b-button variant="outline-info">\
                                     <h5>Video: Taming your research topic <b-icon icon="hand-index"\
                                             aria-hidden="true"></b-icon>\
                                     </h5>\
-                                </b-button>\
+                                </b-button>\ -->\
                             </b-card>\
                         </b-collapse>\
                     </b-col>\
                 </b-row>\
             </b-container>'
+
+            
             };
 
             var vm = new Vue({
@@ -604,7 +1200,7 @@
                 data: {
                     fromDate: 'gettoday()',
                     toDate: '',
-                    picked: 'essay',
+                    picked: '',
                     stepobject: '',  // will be determined in the HTML <steps v-bind...>
                     name: '',
                     show: false,
@@ -621,6 +1217,17 @@
                         } else {
                             return false;
                         }
+                    },
+                    isAssignment: function(assignmentType) {
+                        if (this.picked==assignmentType) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    },
+                    pickAssignment(assignmentType) {
+                        console.log('pick', assignmentType)
+                        this.picked = assignmentType
                     },
                     toggle() {
                         console.log('Toggle button clicked')
