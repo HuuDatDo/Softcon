@@ -51,7 +51,7 @@
 
         div.card {
             .card-body {
-                text-align: left;
+                text-align: center;
                 padding: 1.25rem;
             }
 
@@ -111,7 +111,17 @@
         .container {
             margin-bottom: 40px;
         }
+        .bv-example-row {
+            max-width: 1440px;
+        }
     </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("z_LAKkqo4xiHbzP2_");
+        })();
+    </script>
 </head>
 
 <body>
@@ -128,8 +138,8 @@
                     <template>
                         <div class="form">
                             <b-form-group description="i.e. Reflection essay for ABC " label="Assignment name:"
-                                label-for="input-1" valid-feedback="Thank you!">
-                                <b-form-input id="input-1" v-model="blank" trim></b-form-input>
+                                label-for="assignmentName" valid-feedback="Thank you!">
+                                <b-form-input id="assignmentName"></b-form-input>
                             </b-form-group>
                         </div>
                     </template>
@@ -162,7 +172,7 @@
                     <template>
                         <div class="form">
                             <b-form-group>
-                                <label>Assignment type:</label>
+                                <label>Assignment types:</label>
                                 <b-card-group deck>
                                     <b-button @click="pickAssignment('researchEssays')" variant="outline-info"><img
                                             src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
@@ -214,7 +224,13 @@
             </b-row>
             <b-row>
                 <b-col>
-                    <b-button variant="info" class="btn-secondary">
+                    <div class="form">
+                        <b-form-group description="" label="Send to:"
+                            label-for="emailTo" valid-feedback="Thank you!">
+                            <b-form-input id="emailTo"></b-form-input>
+                        </b-form-group>
+                    </div>
+                    <b-button @click="sendEmail()" variant="info" class="btn-secondary">
                         <h5>Send to your Email <b-icon icon="envelope-fill" aria-hidden="true"></b-icon>
                         </h5>
                     </b-button>
@@ -1224,6 +1240,27 @@
                         } else {
                             return false;
                         }
+                    },
+                    sendEmail() {
+                        var params = {
+                            assignmentName: document.getElementById('assignmentName').value,
+                            emailTo: document.getElementById('emailTo').value,
+                        };
+
+                        const serviceID = "service_t04rm3h";
+                        const templateID = "template_ftc406h";
+
+                        emailjs.send(serviceID, templateID, params).then(
+                            (res) => {
+                                document.getElementById('assignmentName').value = "";
+                                document.getElementById('emailTo').value = "";
+                                console.log(res);
+                                alert("Email sent successfully");
+                            })
+                        .catch((err) => {
+                            console.log(err);
+                            alert("Error sending email");
+                        })
                     },
                     pickAssignment(assignmentType) {
                         console.log('pick', assignmentType)
