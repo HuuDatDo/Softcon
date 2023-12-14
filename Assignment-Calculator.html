@@ -252,51 +252,15 @@
                     Success! You have <span class="highlight1"><p>{{calcTotalDays()}}</p> days</span> to finish your assignment.
                 </b-alert>
             </b-row> -->
-        <!-- <template v-if="show && isDatescategory()">
+        <template v-if="show && isDatescategory()">
             <div class="alert-container">
                 <b-alert show dismissible fade>
                     Success! You have <span class="highlight1">{{ calcTotalDays() }} days</span> to finish your assignment.
                 </b-alert>
             </div>
-            <b-row>
-                <b-col>
-                    <div class="form">
-                        <b-form-group description="" label="Send to:"
-                            label-for="emailTo" valid-feedback="Thank you!">
-                            <b-form-input id="emailTo"></b-form-input>
-                        </b-form-group>
-                    </div>
-                    <b-button @click="sendEmail()" variant="info" class="btn-secondary">
-                        <h5>Send to your Email <b-icon icon="envelope-fill" aria-hidden="true"></b-icon>
-                        </h5>
-                    </b-button>
-                    <b-button size="lg" variant="info" class="btn-secondary">Add to your Calendar <b-icon
-                            icon="calendar3" aria-hidden="true"></b-icon>
-                    </b-button>
-                    </b-form-group>
-                </b-col>
-            </b-row>
-        </template> -->
+        </template>
 
         <template v-if="isAssignment('researchEssays') && show && isDatescategory()">
-            <!-- <b-row>
-                <b-col>
-                    <div class="form">
-                        <b-form-group description="" label="Send to:"
-                            label-for="emailTo" valid-feedback="Thank you!">
-                            <b-form-input id="emailTo"></b-form-input>
-                        </b-form-group>
-                    </div>
-                    <b-button @click="sendEmail()" variant="info" class="btn-secondary">
-                        <h5>Send to your Email <b-icon icon="envelope-fill" aria-hidden="true"></b-icon>
-                        </h5>
-                    </b-button>
-                    <b-button size="lg" variant="info" class="btn-secondary">Add to your Calendar <b-icon
-                            icon="calendar3" aria-hidden="true"></b-icon>
-                    </b-button>
-                    </b-form-group>
-                </b-col>
-            </b-row> -->
             <div class="input-button-group">
                 <input type="text" placeholder="Send to:" />
                 <b-button @click="sendEmail()" variant="info" class="btn-secondary">Send to your Email <b-icon icon="envelope-fill" aria-hidden="true"></b-icon></b-button>
@@ -1249,7 +1213,7 @@
                 template: '<b-container class="steps">\
                 <b-row>\
                     <b-col>\
-                        <b-button block v-b-toggle.collapse-3 size="lg" class="m-1"><b>Step {{ stepobject.step }}: {{ stepobject.heading }}.</b> Finish by {{ calcDueDate }}</b-button>\
+                        <b-button block v-b-toggle.collapse-3 size="lg" class="m-1"><b>Step {{ stepobject.step }}: {{ stepobject.heading }}.</b> <span class="float-right">Finish by {{ calcDueDate }}</span></b-button>\
                         <b-collapse visible id="collapse-3">\
                             <b-card>\
                                 <b-card-text>\
@@ -1282,7 +1246,8 @@
                     blank: '',
                     value: '',
                     context: null,
-                    suffix : 'T00:00:00.000-05:00'
+                    suffix : 'T00:00:00.000-05:00',
+                    totalDays: 0
                 },
 
                 methods: {
@@ -1303,12 +1268,13 @@
                     },
                     calcTotalDays: function(){
                         if (this.fromDate !== '' && this.toDate !== '' && vm.toDate > vm.fromDate){
-                            fromDateObject = new Date(this.fromDate + this.suffix);
-                            toDateObject = new Date(this.toDate + this.ISOsuffix);
-                            return String(fromDate.getTime() - toDate.getTime())
+                            var fromDateObject = new Date(vm.fromDate + this.suffix);
+                            var toDateObject = new Date(vm.toDate + this.suffix);
+                            var oneDay = 24 * 60 * 60 * 1000;
+                            return Math.round(Math.abs((fromDateObject.getTime() - toDateObject.getTime()) / (oneDay)));
                         }
                         else{
-                            return "00"
+                            return 0;
                         }
                     },
                     sendEmail() {
