@@ -228,7 +228,7 @@
                                 <h5>ARTICLE REVIEW</h5>
                             </b-button>
                             <b-button @click="pickAssignment('annotatedBibliography')" variant="outline-info">
-                                <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
+                                <img src="https://media-public.canva.com/QFtjY/MAFEKnQFtjY/1/t.png" />
                                 <h5>ANNOTATED BIBLIOGRAPHY</h5>
                             </b-button>
                             <b-button @click="pickAssignment('labReport')" variant="outline-info">
@@ -236,7 +236,7 @@
                                 <h5>LAB REPORT</h5>
                             </b-button>
                             <b-button @click="pickAssignment('policyBrief')" variant="outline-info">
-                                <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
+                                <img src="https://media-public.canva.com/0RzBw/MAFUGP0RzBw/1/t.png" />
                                 <h5>POLICY BRIEF</h5>
                             </b-button>
                         </b-card-group>
@@ -258,14 +258,15 @@
                     Success! You have <span class="highlight1">{{ calcTotalDays() }} days</span> to finish your assignment.
                 </b-alert>
             </div>
+            <div class="input-button-group">
+                <input type="text" placeholder="Enter your gmail:" id="emailTo"/>
+                <b-button @click="sendEmail()" variant="info" class="btn-secondary">Send to your Email <b-icon icon="envelope-fill"
+                        aria-hidden="true"></b-icon></b-button>
+                <!-- <b-button type="button">Add to your Calendar <b-icon icon="calendar3" aria-hidden="true"></b-button> -->
+            </div>
         </template>
 
         <template v-if="isAssignment('researchEssays') && show && isDatescategory()">
-            <div class="input-button-group">
-                <input type="text" placeholder="Send to:" />
-                <b-button @click="sendEmail()" variant="info" class="btn-secondary">Send to your Email <b-icon icon="envelope-fill" aria-hidden="true"></b-icon></b-button>
-                <!-- <b-button type="button">Add to your Calendar <b-icon icon="calendar3" aria-hidden="true"></b-button> -->
-            </div>
              <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
                 <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
                   RESEARCH ESSAYS
