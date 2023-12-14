@@ -20,6 +20,7 @@
 
         .highlight1 {
             color: red;
+            white-space: nowrap;
         }
 
         h1 {
@@ -64,7 +65,8 @@
         .btn-primary {
             font-size: 1.5rem;
             font-weight: 600;
-            margin: 40px 0;
+            width: 400px;
+            margin: 20px 20px;
             padding: 15px;
         }
 
@@ -101,6 +103,13 @@
             font-size: 1.2rem;
         }
 
+        .alert-container {
+            display: flex;
+            justify-content: center; /* Centers the alert horizontally */
+            align-items: center; /* Centers the alert vertically, if needed */
+            text-align: center; /* Centers the text within the alert */
+        }
+
         .steps {
             >.row .col>button {
                 background-color: rgb(61, 81, 131);
@@ -113,7 +122,23 @@
         }
         .bv-example-row {
             max-width: 1440px;
+            .input-button-group {
+                display: flex; /* This will enable flexbox */
+                align-items: center; /* This will vertically center align the items */
+                gap: 10px; /* This adds space between the input and the buttons */
+            }
+            
+        .input-button-group > input,
+        .input-button-group > button {
+            flex: 1; /* This will make the input and buttons take up equal space */
+                /* Adjust the flex value if you want the input to be wider or narrower relative to the buttons */
         }
+            
+            /* If you want the input to take more space, you can specify a larger flex value */
+        .input-button-group > input {
+            flex: 2; /* This will make the input twice as large as each button */
+        }
+    }
     </style>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
     </script>
@@ -144,8 +169,6 @@
                         </div>
                     </template>
                 </b-col>
-            </b-row>
-            <b-row>
                 <b-col><template>
                         <div class="form">
                             <b-form-group>
@@ -169,59 +192,72 @@
             </b-row>
             <b-row>
                 <b-col>
-                    <template>
-                        <div class="form">
-                            <b-form-group>
-                                <label>Assignment types:</label>
-                                <b-card-group deck>
-                                    <b-button @click="pickAssignment('researchEssays')" variant="outline-info"><img
-                                            src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
-                                        <h5>RESEARCH ESSAYS</h5>
-                                    </b-button>
-                                    <b-button @click="pickAssignment('stemPosterPresentation')" variant="outline-info"><img
-                                            src="https://media-public.canva.com/CFjdg/MAFpI2CFjdg/1/t.png" />
-                                        <h5>STEM POSTER PRESENTATION</h5>
-                                    </b-button>
-                                    <b-button @click="pickAssignment('criticalReflection')" variant="outline-info"><img
-                                            src="https://media-public.canva.com/0RzBw/MAFUGP0RzBw/1/t.png" />
-                                        <h5>CRITICAL REFLECTION</h5>
-                                    </b-button>
-                                    <b-button @click="pickAssignment('literatureReview')" variant="outline-info"><img
-                                            src="https://media-public.canva.com/QFtjY/MAFEKnQFtjY/1/t.png" />
-                                        <h5>LITERATURE REVIEW</h5>
-                                    </b-button>
-                                    <b-button @click="pickAssignment('articleReview')" variant="outline-info"><img
-                                            src="https://media-public.canva.com/5fE14/MAFmn45fE14/1/t.png" />
-                                        <h5>ARTICLE REVIEW</h5>
-                                    </b-button>
-                                    <b-button @click="pickAssignment('annotatedBibliography')" variant="outline-info"><img
-                                            src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
-                                        <h5>ANNOTATED BIBLIOGRAPHY</h5>
-                                    </b-button>
-                                    <b-button @click="pickAssignment('labReport')" variant="outline-info"><img
-                                            src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
-                                        <h5>LAB REPORT</h5>
-                                    </b-button>
-                                    <b-button @click="pickAssignment('policyBrief')" variant="outline-info"><img
-                                            src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
-                                        <h5>POLICY BRIEF</h5>
-                                    </b-button>
-                                </b-card-group>
-                                <b-button @click="toggle" block variant="primary" class="btn-primary">Generate Schedule <b-icon
-                                        icon="arrow-down-circle-fill" aria-hidden="true"></b-icon>
+                    <div class="form">
+                        <b-form-group>
+                            <label>Assignment types:</label>
+                            <!-- First Row of Icons -->
+                            <b-card-group deck class = "justify-content-center">
+                                <b-button @click="pickAssignment('researchEssays')" variant="outline-info">
+                                    <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
+                                    <h5>RESEARCH ESSAYS</h5>
                                 </b-button>
-                            </b-form-group>
-                        </div>
-                    </template>
+                                <b-button @click="pickAssignment('stemPosterPresentation')" variant="outline-info">
+                                    <img src="https://media-public.canva.com/CFjdg/MAFpI2CFjdg/1/t.png" />
+                                    <h5>STEM POSTER PRESENTATION</h5>
+                                </b-button>
+                                <b-button @click="pickAssignment('criticalReflection')" variant="outline-info">
+                                    <img src="https://media-public.canva.com/0RzBw/MAFUGP0RzBw/1/t.png" />
+                                    <h5>CRITICAL REFLECTION</h5>
+                                </b-button>
+                                <b-button @click="pickAssignment('literatureReview')" variant="outline-info">
+                                    <img src="https://media-public.canva.com/QFtjY/MAFEKnQFtjY/1/t.png" />
+                                    <h5>LITERATURE REVIEW</h5>
+                                </b-button>
+                            </b-card-group>
+                        </b-form-group>
+                    </div>
                 </b-col>
             </b-row>
             <b-row>
                 <b-col>
-                    <b-alert show dismissible fade>
-                        Success! You have <span class="highlight1">00 days</span> to finish your assignment.
-                    </b-alert>
+                    <div class="form">
+                        <!-- Second Row of Icons -->
+                        <b-card-group deck class = "justify-content-center">
+                            <b-button @click="pickAssignment('articleReview')" variant="outline-info">
+                                <img src="https://media-public.canva.com/5fE14/MAFmn45fE14/1/t.png" />
+                                <h5>ARTICLE REVIEW</h5>
+                            </b-button>
+                            <b-button @click="pickAssignment('annotatedBibliography')" variant="outline-info">
+                                <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
+                                <h5>ANNOTATED BIBLIOGRAPHY</h5>
+                            </b-button>
+                            <b-button @click="pickAssignment('labReport')" variant="outline-info">
+                                <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
+                                <h5>LAB REPORT</h5>
+                            </b-button>
+                            <b-button @click="pickAssignment('policyBrief')" variant="outline-info">
+                                <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
+                                <h5>POLICY BRIEF</h5>
+                            </b-button>
+                        </b-card-group>
+                    </div>
                 </b-col>
             </b-row>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <b-button @click="toggle" block variant="primary" class="btn-primary">Generate Schedule <b-icon icon="arrow-down-circle-fill" aria-hidden="true"></b-icon></b-button>
+            </div>
+        </b-container>
+            <!-- <b-row>
+                <b-alert show dismissible fade>
+                    Success! You have <span class="highlight1"><p>{{calcTotalDays()}}</p> days</span> to finish your assignment.
+                </b-alert>
+            </b-row> -->
+        <!-- <template v-if="show && isDatescategory()">
+            <div class="alert-container">
+                <b-alert show dismissible fade>
+                    Success! You have <span class="highlight1">{{ calcTotalDays() }} days</span> to finish your assignment.
+                </b-alert>
+            </div>
             <b-row>
                 <b-col>
                     <div class="form">
@@ -240,9 +276,32 @@
                     </b-form-group>
                 </b-col>
             </b-row>
-        </b-container>
+        </template> -->
 
         <template v-if="isAssignment('researchEssays') && show && isDatescategory()">
+            <!-- <b-row>
+                <b-col>
+                    <div class="form">
+                        <b-form-group description="" label="Send to:"
+                            label-for="emailTo" valid-feedback="Thank you!">
+                            <b-form-input id="emailTo"></b-form-input>
+                        </b-form-group>
+                    </div>
+                    <b-button @click="sendEmail()" variant="info" class="btn-secondary">
+                        <h5>Send to your Email <b-icon icon="envelope-fill" aria-hidden="true"></b-icon>
+                        </h5>
+                    </b-button>
+                    <b-button size="lg" variant="info" class="btn-secondary">Add to your Calendar <b-icon
+                            icon="calendar3" aria-hidden="true"></b-icon>
+                    </b-button>
+                    </b-form-group>
+                </b-col>
+            </b-row> -->
+            <div class="input-button-group">
+                <input type="text" placeholder="Send to:" />
+                <b-button @click="sendEmail()" variant="info" class="btn-secondary">Send to your Email <b-icon icon="envelope-fill" aria-hidden="true"></b-icon></b-button>
+                <!-- <b-button type="button">Add to your Calendar <b-icon icon="calendar3" aria-hidden="true"></b-button> -->
+            </div>
              <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
                 <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
                   RESEARCH ESSAYS
@@ -1222,7 +1281,8 @@
                     show: false,
                     blank: '',
                     value: '',
-                    context: null
+                    context: null,
+                    suffix : 'T00:00:00.000-05:00'
                 },
 
                 methods: {
@@ -1239,6 +1299,16 @@
                             return true;
                         } else {
                             return false;
+                        }
+                    },
+                    calcTotalDays: function(){
+                        if (this.fromDate !== '' && this.toDate !== '' && vm.toDate > vm.fromDate){
+                            fromDateObject = new Date(this.fromDate + this.suffix);
+                            toDateObject = new Date(this.toDate + this.ISOsuffix);
+                            return String(fromDate.getTime() - toDate.getTime())
+                        }
+                        else{
+                            return "00"
                         }
                     },
                     sendEmail() {
