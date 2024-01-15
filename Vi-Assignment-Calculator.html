@@ -127,7 +127,18 @@
                 align-items: center; /* This will vertically center align the items */
                 gap: 10px; /* This adds space between the input and the buttons */
             }
+            
+        .input-button-group > input,
+        .input-button-group > button {
+            flex: 1; /* This will make the input and buttons take up equal space */
+                /* Adjust the flex value if you want the input to be wider or narrower relative to the buttons */
         }
+            
+            /* If you want the input to take more space, you can specify a larger flex value */
+        .input-button-group > input {
+            flex: 2; /* This will make the input twice as large as each button */
+        }
+    }
     </style>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
     </script>
@@ -140,21 +151,18 @@
 
 <body>
     <div id="app">
-        <a href="Vi-Assignment-Calculator.html">
-            <img src="https://i.pinimg.com/736x/98/9b/9c/989b9c38c26172c25bd2dca461340deb.jpg" alt="Icon Description" alt="Top Right Icon" style="float: right; width: 20px; height: 20px;">
-        </a>
         <b-jumbotron>
-            <h2>Stay <span class="highlight1">Ahead</span>, Stay <span class="highlight1">Organized</span> with our</h2>
+            <h2><span class="highlight1">Làm chủ</span> mọi bài tập của bạn với</h2>
             <h1>Assignment Calculator</h1>
-            <h2>Your Roadmap to <span class="highlight1">A+</span> grades!</h2>
+            <h2>Từng bước chinh phục <span class="highlight1">điểm số</span> <span class="highlight1">A+</span></h2>
         </b-jumbotron>
-        <div class="section">Enter your assignment details:</div>
+        <div class="section">Nhập thông tin về bài tập của bạn:</div>
         <b-container class="bv-example-row">
             <b-row>
                 <b-col>
                     <template>
                         <div class="form">
-                            <b-form-group description="i.e. Reflection essay for ABC " label="Assignment name:"
+                            <b-form-group label="Tên bài tập:"
                                 label-for="assignmentName" valid-feedback="Thank you!">
                                 <b-form-input id="assignmentName"></b-form-input>
                             </b-form-group>
@@ -164,7 +172,7 @@
                 <b-col><template>
                         <div class="form">
                             <b-form-group>
-                                <label for="example-datepicker">Begin date:</label>
+                                <label for="example-datepicker">Ngày bắt đầu:</label>
                                 <b-form-datepicker id="example-datepicker" v-model="fromDate"
                                     class="mb-2"></b-form-datepicker>
                             </b-form-group>
@@ -174,7 +182,7 @@
                 <b-col><template>
                         <div class="form">
                             <b-form-group>
-                                <label for="example-datepicker">Due date:</label>
+                                <label for="example-datepicker">Hạn nộp bài:</label>
                                 <b-form-datepicker id="example-datepicker" v-model="toDate"
                                     class="mb-2"></b-form-datepicker>
                             </b-form-group>
@@ -186,24 +194,24 @@
                 <b-col>
                     <div class="form">
                         <b-form-group>
-                            <label>Assignment types:</label>
+                            <label>Loại bài tập:</label>
                             <!-- First Row of Icons -->
                             <b-card-group deck class = "justify-content-center">
                                 <b-button @click="pickAssignment('researchEssays')" variant="outline-info">
                                     <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
-                                    <h5>RESEARCH ESSAYS</h5>
+                                    <h5>Luận Văn</h5>
                                 </b-button>
                                 <b-button @click="pickAssignment('stemPosterPresentation')" variant="outline-info">
                                     <img src="https://media-public.canva.com/CFjdg/MAFpI2CFjdg/1/t.png" />
-                                    <h5>STEM POSTER PRESENTATION</h5>
+                                    <h5>Thuyết Trình</h5>
                                 </b-button>
                                 <b-button @click="pickAssignment('criticalReflection')" variant="outline-info">
                                     <img src="https://media-public.canva.com/0RzBw/MAFUGP0RzBw/1/t.png" />
-                                    <h5>CRITICAL REFLECTION</h5>
+                                    <h5>Cảm Nghĩ</h5>
                                 </b-button>
                                 <b-button @click="pickAssignment('literatureReview')" variant="outline-info">
                                     <img src="https://media-public.canva.com/QFtjY/MAFEKnQFtjY/1/t.png" />
-                                    <h5>LITERATURE REVIEW</h5>
+                                    <h5>Tổng quan tài liệu</h5>
                                 </b-button>
                             </b-card-group>
                         </b-form-group>
@@ -217,26 +225,26 @@
                         <b-card-group deck class = "justify-content-center">
                             <b-button @click="pickAssignment('articleReview')" variant="outline-info">
                                 <img src="https://media-public.canva.com/5fE14/MAFmn45fE14/1/t.png" />
-                                <h5>ARTICLE REVIEW</h5>
+                                <h5>Tóm tắt bài báo</h5>
                             </b-button>
                             <b-button @click="pickAssignment('annotatedBibliography')" variant="outline-info">
                                 <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
-                                <h5>ANNOTATED BIBLIOGRAPHY</h5>
+                                <h5>Trích dẫn tham khảo</h5>
                             </b-button>
                             <b-button @click="pickAssignment('labReport')" variant="outline-info">
                                 <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
-                                <h5>LAB REPORT</h5>
+                                <h5>Báo cáo thí nghiệm</h5>
                             </b-button>
                             <b-button @click="pickAssignment('policyBrief')" variant="outline-info">
                                 <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
-                                <h5>POLICY BRIEF</h5>
+                                <h5>Báo cáo chính sách</h5>
                             </b-button>
                         </b-card-group>
                     </div>
                 </b-col>
             </b-row>
             <div style="display: flex; justify-content: center; align-items: center;">
-                <b-button @click="toggle" block variant="primary" class="btn-primary">Generate Schedule <b-icon icon="arrow-down-circle-fill" aria-hidden="true"></b-icon></b-button>
+                <b-button @click="toggle" block variant="primary" class="btn-primary">Lên kế hoạch <b-icon icon="arrow-down-circle-fill" aria-hidden="true"></b-icon></b-button>
             </div>
         </b-container>
             <!-- <b-row>
@@ -247,7 +255,7 @@
         <template v-if="show && isDatescategory()">
             <div class="alert-container">
                 <b-alert show dismissible fade>
-                    Success! You have <span class="highlight1">{{ calcTotalDays() }} days</span> to finish your assignment.
+                    Đã xong! Bạn có <span class="highlight1">{{ calcTotalDays() }} ngày</span> để hoàn thành bài tập.
                 </b-alert>
             </div>
         </template>
@@ -255,7 +263,7 @@
         <template v-if="isAssignment('researchEssays') && show && isDatescategory()">
             <div class="input-button-group">
                 <input type="text" placeholder="Send to:" />
-                <b-button @click="sendEmail()" variant="info" class="btn-secondary">Send to your Email <b-icon icon="envelope-fill" aria-hidden="true"></b-icon></b-button>
+                <b-button @click="sendEmail()" variant="info" class="btn-secondary"> Gửi đến Email <b-icon icon="envelope-fill" aria-hidden="true"></b-icon></b-button>
                 <!-- <b-button type="button">Add to your Calendar <b-icon icon="calendar3" aria-hidden="true"></b-button> -->
             </div>
              <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
@@ -420,24 +428,24 @@
             // STEPS CONTENT IN JSON OBJECT FORMAT
             var researchEssays1 = {
                 step: '1',
-                heading: 'Getting Started',
+                heading: 'Khởi động',
                 truePercent: '10',
                 todos: '<div class="content"> \
-                <p><strong>A. Understand your assignment.</strong></p> \
-                <p>Take your time reading the instructions carefully and make sure you understand all the requirements, including the topic, format, length, and deadline, etc. Never hesitate to ask your instructor for clarification if something is unclear. To efficiently organize your time, break the assignment down into smaller activities and make a detailed timeline.</p> \
+                <p><strong>A. Hiểu yêu cầu/đề bài/nhiệm vụ cần làm: </strong></p> \
+                <p>Hãy dành thời gian đọc kỹ hướng dẫn và đảm bảo bạn hiểu tất cả các yêu cầu, bao gồm chủ đề, hình thức, độ dài và thời hạn cần hoàn thành, v.v. Đừng ngần ngại hỏi các thầy cô nếu bạn cần làm rõ điều gì. Để sắp xếp thời gian một cách hiệu quả, hãy chia bài tập thành các các phần nhỏ hơn tương ứng với kế hoạch bạn lập sẵn.</p> \
                 \
-                <p><strong>B.Initial investigation</strong> </p> \
-                <p>The initial investigation phase sets the foundation for your research essay and guides the direction of your study. There are a few key steps to starting an investigation for a research paper:</p> \
+                <p><strong>B. Bước đầu nghiên cứu:</strong> </p> \
+                <p>Đây là giai đoạn nền tảng và mang tính định hướng cho bài nghiên cứu của bạn, bao gồm các bước sau: </p> \
                 <ul> \
-                    <li>Choose a research subject or topic that interests you and meets the requirements of the assignment.</li> \
-                    <li>Do preliminary research to compile background data and evaluate whether reliable sources are accessible.</li> \
+                    <li> Chọn một chủ đề nghiên cứu mà bạn quan tâm và đáp ứng các yêu cầu của đề bài.</li> \
+                    <li> Nghiên cứu sơ bộ để tổng hợp dữ liệu cơ bản và đánh giá xem các nguồn tin chính thống có thể truy cập được hay không.</li> \
                 </ul> \
                 \
-                <p><strong>C. Narrow your topic</strong></p> \
-                <p>Evaluate each possible topic\'s importance, feasibility, and relevance. Seek advice from instructors if needed. Choose a specific research issue or subtopic that fits within the scope of your assignment, aligns with your research objectives, and has the potential for insightful analysis. Consider using traditional journalistic questions (who, what, where, when, why).</p> \
+                <p><strong>C.Thu hẹp chủ đề:</strong></p> \
+                <p>Bạn cần đánh giá tầm quan trọng, tính khả thi và mức độ liên quan của từng chủ đề. Không chỉ vậy bạn cần chọn chủ đề phù hợp với phạm vi bài tập, mục tiêu nghiên cứu và nó phải có khả năng để cho bạn đào sâu tìm hiểu. Bạn cân nhắc sử dụng các câu hỏi như ai, cái gì, ở đâu, khi nào, tại sao. Hãy tìm kiếm lời khuyên từ thầy cô nếu cần. </p> \
                 \
-                <p><strong>D. Form research question</strong></p> \
-                <p>Once a gap or problem is identified, develop it into a direct, precise question. Make sure your research question is clear, simple, and able to be answered. Additionally, it must be relevant and capable of expanding the field.</p> \
+                <p><strong>D. Đặt câu hỏi nghiên cứu</strong></p> \
+                <p>Khi một vấn đề đã được xác định, hãy phát triển nó thành một câu hỏi nghiên cứu. Câu hỏi nghiên cứu của bạn cần phải rõ ràng, đơn giản và có khả năng trả lời được. Ngoài ra, nó phải phù hợp và liên quan đến lĩnh vực nghiên cứu, cũng như có khả năng mở rộng lĩnh vực nghiên cứu. </p> \
             </div>',
                 percentage: '10',
                 truePercent: '10'
@@ -446,16 +454,16 @@
 
             var researchEssays2 = {
                 step: '2',
-                heading: 'Research',
+                heading: 'Nghiên cứu',
                 todos: '<div class="content"> \
-                <p><strong>A. Create research strategy</strong></p> \
-                <p>Depending on your research objectives, select suitable research methods, whether they be qualitative, quantitative, or mixed methodologies. Create an organized plan for collecting data, laying out the sources, tools, and procedures you are going to employ.</p> \
+                <p><strong>A. Lập chiến lược nghiên cứu:</strong></p> \
+                <p>Tùy thuộc vào mục tiêu nghiên cứu của bạn, hãy chọn phương pháp nghiên cứu phù hợp, cho dù đó là phương pháp định tính, định lượng hay hỗn hợp. Hãy vạch ra kế hoạch để thu thập dữ liệu, tổng hợp các nguồn thông tin hiện có, công cụ và quy trình bạn sẽ áp dụng.</p> \
                 \
-                <p><strong>B. Find and assess resources</strong></p> \
-                <p>Using reliable search tools, academic databases, and libraries to find sources that are applicable to your subject of study. Consider the author\'s credentials, the source\'s reputation, and the source\'s publication date when evaluating sources. Books from credible publishers, government publications, and peer-reviewed journals are frequently reliable resources. Assess the source\'s approach and supporting data carefully as well to judge its quality and applicability to your research. You can create a well-supported and well-rounded research essay by cross-referencing data with several sources and being critical of biases or conflicts of interest.</p> \
+                <p><strong>B. Tìm và đánh giá các nguồn tin:</strong></p> \
+                <p>Sử dụng các công cụ tìm kiếm đáng tin cậy, các cơ sở dữ liệu học thuật và thư viện để tìm các nguồn tài liệu phù hợp với đề tài nghiên cứu. Khi đánh giá các nguồn tài liệu, bạn cần xem xét thông tin của tác giả, độ uy tín của nguồn và ngày xuất bản tài liệu. Các cuốn sách từ các nhà xuất bản đáng tin cậy, các tài liệu/văn bản pháp lý từ chính phủ và các tạp chí được bình duyệt thường là các nguồn tài liệu đáng tin cậy. Hãy xem xét cẩn thận phương pháp tiếp cận với chủ đề và dữ liệu liên quan để đánh giá chất lượng và tính phù hợp của nó với đề tài nghiên cứu của bạn. Bạn có thể tạo một bài nghiên cứu với những bằng chứng xác thực và toàn diện bằng cách so sánh dữ liệu từ nhiều nguồn và đánh giá khách quan về chúng.</p> \
                 \
-                <p><strong>C. Conduct research</strong></p> \
-                <p>As you begin your investigation, gather your data, make sure that you highlight important details, write down personal thoughts, and carefully organize them to keep track of your sources.</p> \
+                <p><strong>C. Tiến hành nghiên cứu: </strong></p> \
+                <p>Khi bạn bắt đầu nghiên cứu, hãy thu thập dữ liệu và đảm bảo rằng bạn làm nổi bật những chi tiết quan trọng, ghi lại những suy nghĩ cá nhân và cẩn thận sắp xếp chúng để tiện theo dõi sau này.</p> \
             </div>',
                 percentage: '45',
                 truePercent: '35'
@@ -463,16 +471,16 @@
 
             var researchEssays3 = {
                 step: '3',
-                heading: 'Structuring your essay',
+                heading: 'Lập dàn ý',
                 todos: '<div class="content">  \
-                <p><strong>A. Move from research to writing: Brainstorming</strong></p> \
-                <p>Analyze your sources attentively, considering their credibility and applicability. Then use this analysis to support your main points and arguments. As your thinking, remember to maintain a logical flow of thought, and use evidence from your study to back up your points of view.</p> \
+                <p><strong>A. Lên ý tưởng</strong></p> \
+                <p>Khi xây dựng những quan điểm và lập luận của riêng mình bạn hãy sử dụng các nguồn mình đã tự thu thập được. Lưu ý rằng trong suốt quá trình này bạn cần sử dụng tư duy logic của mình để hợp lý hóa những thông tin bạn chọn.</p> \
                 \
-                <p><strong>B. Form a thesis statement</strong></p> \
-                <p>Keep in mind that a solid thesis statement forms the basis of your research essay, directing your research and providing your paper with a defined direction. Your thesis statement should be a succinct, declarative sentence that wraps up your essay\'s major idea and expresses your opinion on the topic. Make sure your thesis is both specific and debatable. It shouldn\'t just be a factual claim; rather, it should be a statement that encourages debate and analysis.</p> \
+                <p><strong>B.Xây dựng luận điểm:</strong></p> \
+                <p>Bạn hãy nhớ rằng một luận điểm vững chắc sẽ hình thành cơ sở cho bài luận nghiên cứu và định hướng nghiên cứu. Luận điểm của bạn nên là một câu ngắn gọn, tóm tắt ý chính của bài luận và bày tỏ ý kiến của bạn về chủ đề này. Hãy chắc chắn rằng luận điểm của bạn vừa cụ thể vừa có tính phản biện. Nó không nên chỉ là một tuyên bố thực tế; thay vào đó, nó phải là một tuyên bố có thể khuyến khích sự tranh luận và phân tích.</p> \
                 \
-                <p><strong>C. Make a detailed outline</strong></p> \
-                <p>Divide your writing into paragraphs or major points that support your thesis. Each section should be further broken into more narrowly focused subjects or arguments. Put in the main points, supporting details, and illustrations for each subtopic that you intend to use in your essay. This thorough outline not only serves as a clear road map for your writing but also makes sure you cover relevant content while keeping a logical flow throughout your research essay.</p> \
+                <p><strong>C. Lập dàn ý chi tiết: </strong></p> \
+                <p>Chia bài viết của bạn thành các đoạn văn, mỗi đoạn văn cần có câu chủ đề và được củng cố bằng những luận điểm nhỏ hơn. Dàn ý này không chỉ phục vụ như một lộ trình rõ ràng cho bài viết mà còn đảm bảo rằng những nội dung bạn viết ra có sự liên kết chặt chẽ, mạch lạc.</p> \
             </div>',
                 percentage: '60',
                 truePercent: '15'
@@ -480,30 +488,28 @@
 
             var researchEssays4 = {
                 step: '4',
-                heading: 'Writing the first draft',
+                heading: 'Viết bản nháp đầu tiên',
                 todos: '<div class="content">\
-                <p>Write your ideas down on paper without worrying too much about accuracy.\
-                The first draft is about creating content and putting your thoughts into words.\
-                Pay attention to the logical flow from the beginning to the end of your essay.</p> </div>',
+                <p>Trong bản nháp đầu tiên, hãy viết những suy nghĩ của bạn thành những câu chữ mà không cần lo lắng quá nhiều về độ chính xác của chúng. Điều bạn cần lưu ý duy nhất ở đây là tính logic từ đầu đến cuối bài luận của bạn. </p> </div>',
                 percentage: '80',
                 truePercent: '20'
             };
 
             var researchEssays5 = {
                 step: '5',
-                heading: 'Revising and proofreading',
+                heading: 'Rà soát lại những gì bạn đã viết ',
                 todos: '<div class="content">\
-                <p><strong>A. Evaluate your first draft and conduct additional research as needed</strong></p> \
-                <p>Review your first draft and, if necessary, do further additional research.</p> \
+                <p><strong>Đánh giá bản viết nháp của bạn và tiến hành nghiên cứu bổ sung khi cần thiết. Khi kiểm tra lại bài bạn cần để ý đến mạch bài viết của mình đã rõ ràng và logic chưa? Không chỉ như vậy bạn cần xem cách sử dụng từng từ hay ngữ pháp, dấu câu đã sử dụng đúng chưa?</strong></p> \
+                <p>Nếu cần, hãy viết lại thêm vài bản nháp nữa để bài viết của bạn trở nên hoàn chỉnh hơn.</p> \
                 \
-                <p><strong>B. Revise your draft</strong></p> \
-                <p>Review the organization of your essay to ensure that your thoughts are arranged clearly and coherently. Ensure that each paragraph supports your core argument. Pay attention to grammar, punctuation, and spelling to improve readability overall. Additionally, seek feedback from your peers or instructors and consider appropriate recommendations to improve your work.</p> \
+                <p><strong>B. Chỉnh sửa bản thảo của bạn </strong></p> \
+                <p>Xem lại cách tổ chức bài viết để đảm bảo rằng các ý tưởng được sắp xếp rõ ràng và mạch lạc. Đảm bảo rằng mỗi đoạn đều hỗ trợ cho lập luận cốt lõi của bạn. Hãy chú ý đến ngữ pháp, dấu câu và chính tả để cải thiện bài viết một cách tổng thể.</p> \
                 \
-                <p><strong>C. Evaluate your second draft and rewrite as needed</strong></p> \
-                <p>Form a thesis statement. Focus on issues within the paragraph level, such as logic, analysis, flow, and transitions.</p> \
+                <p><strong>C. Đánh giá bản thảo thứ hai của bạn và viết lại nếu cần </strong></p> \
+                <p>Xây dựng luận điểm. Tập trung vào các vấn đề liên quan đến đoạn văn, chẳng hạn như logic, phân tích, quy trình viết và liên kết các đoạn văn. </p> \
                 \
-                <p><strong>D. Proofread and put your paper into its final format</strong></p> \
-                <p>Read attentively to catch all of those little mistakes. Spend time making sure your paper follows the rules outlined in the suitable style guide. Remember the page numbers, titles, margins, reference lists, and citations. For additional help, check out the VinUniversity library website for LibGuides about citation resources.</p> \
+                <p><strong>D. Hiệu chỉnh và đưa bài viết của bạn vào định dạng cuối cùng </strong></p> \
+                <p>Hãy đọc kỹ để nắm bắt hết những lỗi nhỏ nhất. Dành thời gian để đảm bảo bài viết của bạn tuân theo các quy tắc được nêu trong hướng dẫn về văn phong phù hợp. Ghi nhớ số trang, tiêu đề, lề, danh sách tài liệu tham khảo và trích dẫn. Để được trợ giúp thêm, hãy xem trang web thư viện VinUniversity đọc các LibGuides để có thêm các thông liên quan đến trích dẫn.</p> \
             </div>',
                 percentage: '100',
                 truePercent: '20'
@@ -1198,18 +1204,24 @@
                         var ISOsuffix = 'T00:00:00.000-05:00';
                         var dueDate = new Date(vm.fromDate + ISOsuffix); // this will be a varying calculated value for each step
                         dueDate.setDate(fromDate.getDate() + numDays);
-                        return dueDate.toDateString();
+                        var formatter = new Intl.DateTimeFormat('vi-VN', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            weekday: 'long'
+                        });
+                        return formatter.format(dueDate);
                     },
                 },
                 
                 template: '<b-container class="steps">\
                 <b-row>\
                     <b-col>\
-                        <b-button block v-b-toggle.collapse-3 size="lg" class="m-1"><b>Step {{ stepobject.step }}: {{ stepobject.heading }}.</b> <span class="float-right">Finish by {{ calcDueDate }}</span></b-button>\
+                        <b-button block v-b-toggle.collapse-3 size="lg" class="m-1"><b>Step {{ stepobject.step }}: {{ stepobject.heading }}.</b> <span class="float-right">Hoàn thành trước {{ calcDueDate }}</span></b-button>\
                         <b-collapse visible id="collapse-3">\
                             <b-card>\
                                 <b-card-text>\
-                                    <p><b> (Percent time spent on this step: {{ stepobject.truePercent}}%) </b></p>\
+                                    <p><b> Thời gian dành cho bước này: {{ stepobject.truePercent}}%) </b></p>\
                                     <p v-html="stepobject.todos"> </p>\
                                 </b-card-text>\
                                 <!-- <b-button variant="outline-info">\
