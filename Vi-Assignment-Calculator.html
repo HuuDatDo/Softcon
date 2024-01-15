@@ -127,7 +127,18 @@
                 align-items: center; /* This will vertically center align the items */
                 gap: 10px; /* This adds space between the input and the buttons */
             }
+            
+        .input-button-group > input,
+        .input-button-group > button {
+            flex: 1; /* This will make the input and buttons take up equal space */
+                /* Adjust the flex value if you want the input to be wider or narrower relative to the buttons */
         }
+            
+            /* If you want the input to take more space, you can specify a larger flex value */
+        .input-button-group > input {
+            flex: 2; /* This will make the input twice as large as each button */
+        }
+    }
     </style>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
     </script>
@@ -140,21 +151,18 @@
 
 <body>
     <div id="app">
-        <a href="Vi-Assignment-Calculator.html">
-            <img src="https://i.pinimg.com/736x/98/9b/9c/989b9c38c26172c25bd2dca461340deb.jpg" alt="Icon Description" alt="Top Right Icon" style="float: right; width: 20px; height: 20px;">
-        </a>
         <b-jumbotron>
-            <h2>Stay <span class="highlight1">Ahead</span>, Stay <span class="highlight1">Organized</span> with our</h2>
+            <h2><span class="highlight1">Làm chủ</span> mọi bài tập của bạn với</h2>
             <h1>Assignment Calculator</h1>
-            <h2>Your Roadmap to <span class="highlight1">A+</span> grades!</h2>
+            <h2>Từng bước chinh phục <span class="highlight1">điểm số</span> <span class="highlight1">A+</span></h2>
         </b-jumbotron>
-        <div class="section">Enter your assignment details:</div>
+        <div class="section">Nhập thông tin về bài tập của bạn:</div>
         <b-container class="bv-example-row">
             <b-row>
                 <b-col>
                     <template>
                         <div class="form">
-                            <b-form-group description="i.e. Reflection essay for ABC " label="Assignment name:"
+                            <b-form-group label="Tên bài tập:"
                                 label-for="assignmentName" valid-feedback="Thank you!">
                                 <b-form-input id="assignmentName"></b-form-input>
                             </b-form-group>
@@ -164,7 +172,7 @@
                 <b-col><template>
                         <div class="form">
                             <b-form-group>
-                                <label for="example-datepicker">Begin date:</label>
+                                <label for="example-datepicker">Ngày bắt đầu:</label>
                                 <b-form-datepicker id="example-datepicker" v-model="fromDate"
                                     class="mb-2"></b-form-datepicker>
                             </b-form-group>
@@ -174,7 +182,7 @@
                 <b-col><template>
                         <div class="form">
                             <b-form-group>
-                                <label for="example-datepicker">Due date:</label>
+                                <label for="example-datepicker">Hạn nộp bài:</label>
                                 <b-form-datepicker id="example-datepicker" v-model="toDate"
                                     class="mb-2"></b-form-datepicker>
                             </b-form-group>
@@ -186,24 +194,24 @@
                 <b-col>
                     <div class="form">
                         <b-form-group>
-                            <label>Assignment types:</label>
+                            <label>Loại bài tập:</label>
                             <!-- First Row of Icons -->
                             <b-card-group deck class = "justify-content-center">
                                 <b-button @click="pickAssignment('researchEssays')" variant="outline-info">
                                     <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
-                                    <h5>RESEARCH ESSAYS</h5>
+                                    <h5>Luận Văn</h5>
                                 </b-button>
                                 <b-button @click="pickAssignment('stemPosterPresentation')" variant="outline-info">
                                     <img src="https://media-public.canva.com/CFjdg/MAFpI2CFjdg/1/t.png" />
-                                    <h5>POSTER PRESENTATION</h5>
+                                    <h5>Thuyết Trình</h5>
                                 </b-button>
                                 <b-button @click="pickAssignment('criticalReflection')" variant="outline-info">
                                     <img src="https://media-public.canva.com/0RzBw/MAFUGP0RzBw/1/t.png" />
-                                    <h5>CRITICAL REFLECTION</h5>
+                                    <h5>Cảm Nghĩ</h5>
                                 </b-button>
                                 <b-button @click="pickAssignment('literatureReview')" variant="outline-info">
                                     <img src="https://media-public.canva.com/QFtjY/MAFEKnQFtjY/1/t.png" />
-                                    <h5>LITERATURE REVIEW</h5>
+                                    <h5>Tổng quan tài liệu</h5>
                                 </b-button>
                             </b-card-group>
                         </b-form-group>
@@ -217,26 +225,26 @@
                         <b-card-group deck class = "justify-content-center">
                             <b-button @click="pickAssignment('articleReview')" variant="outline-info">
                                 <img src="https://media-public.canva.com/5fE14/MAFmn45fE14/1/t.png" />
-                                <h5>ARTICLE REVIEW</h5>
+                                <h5>Tóm tắt bài báo</h5>
                             </b-button>
                             <b-button @click="pickAssignment('annotatedBibliography')" variant="outline-info">
-                                <img src="https://media-public.canva.com/QFtjY/MAFEKnQFtjY/1/t.png" />
-                                <h5>ANNOTATED BIBLIOGRAPHY</h5>
+                                <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
+                                <h5>Trích dẫn tham khảo</h5>
                             </b-button>
                             <b-button @click="pickAssignment('labReport')" variant="outline-info">
                                 <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
-                                <h5>LAB REPORT</h5>
+                                <h5>Báo cáo thí nghiệm</h5>
                             </b-button>
                             <b-button @click="pickAssignment('policyBrief')" variant="outline-info">
-                                <img src="https://media-public.canva.com/0RzBw/MAFUGP0RzBw/1/t.png" />
-                                <h5>POLICY BRIEF</h5>
+                                <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
+                                <h5>Báo cáo chính sách</h5>
                             </b-button>
                         </b-card-group>
                     </div>
                 </b-col>
             </b-row>
             <div style="display: flex; justify-content: center; align-items: center;">
-                <b-button @click="toggle" block variant="primary" class="btn-primary">Generate Schedule <b-icon icon="arrow-down-circle-fill" aria-hidden="true"></b-icon></b-button>
+                <b-button @click="toggle" block variant="primary" class="btn-primary">Lên kế hoạch <b-icon icon="arrow-down-circle-fill" aria-hidden="true"></b-icon></b-button>
             </div>
         </b-container>
             <!-- <b-row>
@@ -247,18 +255,17 @@
         <template v-if="show && isDatescategory()">
             <div class="alert-container">
                 <b-alert show dismissible fade>
-                    Success! You have <span class="highlight1">{{ calcTotalDays() }} days</span> to finish your assignment.
+                    Đã xong! Bạn có <span class="highlight1">{{ calcTotalDays() }} ngày</span> để hoàn thành bài tập.
                 </b-alert>
-            </div>
-            <div class="input-button-group">
-                <input type="text" placeholder="Enter your gmail:" id="emailTo"/>
-                <b-button @click="sendEmail()" variant="info" class="btn-secondary">Send to your Email <b-icon icon="envelope-fill"
-                        aria-hidden="true"></b-icon></b-button>
-                <!-- <b-button type="button">Add to your Calendar <b-icon icon="calendar3" aria-hidden="true"></b-button> -->
             </div>
         </template>
 
         <template v-if="isAssignment('researchEssays') && show && isDatescategory()">
+            <div class="input-button-group">
+                <input type="text" placeholder="Send to:" />
+                <b-button @click="sendEmail()" variant="info" class="btn-secondary"> Gửi đến Email <b-icon icon="envelope-fill" aria-hidden="true"></b-icon></b-button>
+                <!-- <b-button type="button">Add to your Calendar <b-icon icon="calendar3" aria-hidden="true"></b-button> -->
+            </div>
              <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
                 <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
                   RESEARCH ESSAYS
@@ -280,7 +287,7 @@
         <template v-if="isAssignment('stemPosterPresentation') && show && isDatescategory()">
              <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
                 <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
-                    POSTER PRESENTATION
+                    STEM POSTER PRESENTATION
                 </h2>
       
                 <p class="fw1 f5 mt0 mb3">
@@ -421,26 +428,24 @@
             // STEPS CONTENT IN JSON OBJECT FORMAT
             var researchEssays1 = {
                 step: '1',
-                heading: 'Getting Started',
+                heading: 'Khởi động',
                 truePercent: '10',
                 todos: '<div class="content"> \
-                <p><strong>A. Understand your assignment.</strong></p> \
-                <p>Take your time reading the instructions carefully and make sure you understand all the requirements, including the topic, format, length, and deadline, etc. Never hesitate to ask your instructor for clarification if something is unclear. To efficiently organize your time, break the assignment down into smaller activities and make a detailed timeline.\
-                    To efficiently organize your time, break the assignment down into smaller activities and make a detailed timeline. For more information, please visit <a href="https://uwaterloo.ca/writing-and-communication-centre/resources-understand-your-assignment" target="_blank" rel="noopener noreferrer">Understand Your Assignment.</a></p> \
+                <p><strong>A. Hiểu yêu cầu/đề bài/nhiệm vụ cần làm: </strong></p> \
+                <p>Hãy dành thời gian đọc kỹ hướng dẫn và đảm bảo bạn hiểu tất cả các yêu cầu, bao gồm chủ đề, hình thức, độ dài và thời hạn cần hoàn thành, v.v. Đừng ngần ngại hỏi các thầy cô nếu bạn cần làm rõ điều gì. Để sắp xếp thời gian một cách hiệu quả, hãy chia bài tập thành các các phần nhỏ hơn tương ứng với kế hoạch bạn lập sẵn.</p> \
                 \
-                <p><strong>B.Initial investigation</strong> </p> \
-                <p>The initial investigation phase sets the foundation for your research essay and guides the direction of your study. There are a few key steps to starting an investigation for a research paper:</p> \
+                <p><strong>B. Bước đầu nghiên cứu:</strong> </p> \
+                <p>Đây là giai đoạn nền tảng và mang tính định hướng cho bài nghiên cứu của bạn, bao gồm các bước sau: </p> \
                 <ul> \
-                    <li>Choose a research subject or topic that interests you and meets the requirements of the assignment.</li> \
-                    <li>Do preliminary research to compile background data and evaluate whether reliable sources are accessible.</li> \
+                    <li> Chọn một chủ đề nghiên cứu mà bạn quan tâm và đáp ứng các yêu cầu của đề bài.</li> \
+                    <li> Nghiên cứu sơ bộ để tổng hợp dữ liệu cơ bản và đánh giá xem các nguồn tin chính thống có thể truy cập được hay không.</li> \
                 </ul> \
                 \
-                <p><strong>C. Narrow your topic</strong></p> \
-                <p>Evaluate each possible topic\'s importance, feasibility, and relevance. Seek advice from instructors if needed. Choose a specific research issue or subtopic that fits within the scope of your assignment, aligns with your research objectives, and has the potential for insightful analysis. Consider using traditional journalistic questions (who, what, where, when, why).\
-                    Here are some <a href="https://libguides.usc.edu/writingguide/narrowtopic" target="_blank" rel="noopener noreferrer">Strategies for Narrowing the Research Topic.</a></p> \
+                <p><strong>C.Thu hẹp chủ đề:</strong></p> \
+                <p>Bạn cần đánh giá tầm quan trọng, tính khả thi và mức độ liên quan của từng chủ đề. Không chỉ vậy bạn cần chọn chủ đề phù hợp với phạm vi bài tập, mục tiêu nghiên cứu và nó phải có khả năng để cho bạn đào sâu tìm hiểu. Bạn cân nhắc sử dụng các câu hỏi như ai, cái gì, ở đâu, khi nào, tại sao. Hãy tìm kiếm lời khuyên từ thầy cô nếu cần. </p> \
                 \
-                <p><strong>D. Form research question</strong></p> \
-                <p>Once a gap or problem is identified, <a href="https://libraries.indiana.edu/sites/default/files/Develop_a_Research_Question.pdf" target="_blank" rel="noopener noreferrer">develop the problem into a direct research question.</a> Make sure your research question is clear, simple, and able to be answered. Additionally, it must be relevant and capable of expanding the field.</p> \
+                <p><strong>D. Đặt câu hỏi nghiên cứu</strong></p> \
+                <p>Khi một vấn đề đã được xác định, hãy phát triển nó thành một câu hỏi nghiên cứu. Câu hỏi nghiên cứu của bạn cần phải rõ ràng, đơn giản và có khả năng trả lời được. Ngoài ra, nó phải phù hợp và liên quan đến lĩnh vực nghiên cứu, cũng như có khả năng mở rộng lĩnh vực nghiên cứu. </p> \
             </div>',
                 percentage: '10',
                 truePercent: '10'
@@ -449,19 +454,16 @@
 
             var researchEssays2 = {
                 step: '2',
-                heading: 'Research',
+                heading: 'Nghiên cứu',
                 todos: '<div class="content"> \
-                <p><strong>A. Create research strategy</strong></p> \
-                <p>Depending on your research objectives, select suitable research methods, whether they be qualitative, quantitative, or mixed methodologies. Create an organized plan for collecting data, laying out the sources, tools, and procedures you are going to employ.</p> \
+                <p><strong>A. Lập chiến lược nghiên cứu:</strong></p> \
+                <p>Tùy thuộc vào mục tiêu nghiên cứu của bạn, hãy chọn phương pháp nghiên cứu phù hợp, cho dù đó là phương pháp định tính, định lượng hay hỗn hợp. Hãy vạch ra kế hoạch để thu thập dữ liệu, tổng hợp các nguồn thông tin hiện có, công cụ và quy trình bạn sẽ áp dụng.</p> \
                 \
-                <p><strong>B. Find and assess resources</strong></p> \
-                <p>Using reliable search tools, academic databases, and <a href="https://vinuni.libguides.com/c.php?g=934922&p=6759514https://vinuni.libguides.com/c.php?g=934922&p=6759514" target="_blank" rel="noopener noreferrer">libraries</a> to find sources that are applicable to your subject of study.\
-                Consider the author\'s credentials, the source\'s reputation, and the source\'s publication date when <a href="https://guides.library.pdx.edu/evaluate" target="_blank" rel="noopener noreferrer">evaluating sources.</a>\
-                Books from credible publishers, government publications, and peer-reviewed journals are frequently reliable resources. Assess the source\'s approach and supporting data carefully as well to judge its quality and applicability to your research. You can create a well-supported and well-rounded research essay by cross-referencing data with several sources and being critical of biases or conflicts of interest. <a href="https://www.youtube.com/watch?v=CLSLFssRQ_E" target="_blank" rel="noopener noreferrer">RADAR test</a> can be used to evaluate the sources.</p> \
+                <p><strong>B. Tìm và đánh giá các nguồn tin:</strong></p> \
+                <p>Sử dụng các công cụ tìm kiếm đáng tin cậy, các cơ sở dữ liệu học thuật và thư viện để tìm các nguồn tài liệu phù hợp với đề tài nghiên cứu. Khi đánh giá các nguồn tài liệu, bạn cần xem xét thông tin của tác giả, độ uy tín của nguồn và ngày xuất bản tài liệu. Các cuốn sách từ các nhà xuất bản đáng tin cậy, các tài liệu/văn bản pháp lý từ chính phủ và các tạp chí được bình duyệt thường là các nguồn tài liệu đáng tin cậy. Hãy xem xét cẩn thận phương pháp tiếp cận với chủ đề và dữ liệu liên quan để đánh giá chất lượng và tính phù hợp của nó với đề tài nghiên cứu của bạn. Bạn có thể tạo một bài nghiên cứu với những bằng chứng xác thực và toàn diện bằng cách so sánh dữ liệu từ nhiều nguồn và đánh giá khách quan về chúng.</p> \
                 \
-                <p><strong>C. Conduct research</strong></p> \
-                <p>As you begin your investigation, gather your data, make sure that you highlight important details, write down personal thoughts. Discover <a href="https://vinuni.instructure.com/courses/1630/pages/reading-and-note-taking?module_item_id=64273" target="_blank" rel="noopener noreferrer">reading and notetaking strategies.</a>\
-                Carefully organize them to keep track of your sources. There are some useful tools to organize your research data: <a href="https://youtu.be/XTfVCiksapk?si=6utERLyZtNsQiaZK" target="_blank" rel="noopener noreferrer">Mendeley</a>, <a href="https://help.evernote.com/hc/en-us/articles/218176427-Evernote-for-Research" target="_blank" rel="noopener noreferrer">Evernote</a>, <a href="https://www.youtube.com/watch?v=ui8vPKUK5sQ" rel="noopener noreferrer">Zotero</a> etc</p> \
+                <p><strong>C. Tiến hành nghiên cứu: </strong></p> \
+                <p>Khi bạn bắt đầu nghiên cứu, hãy thu thập dữ liệu và đảm bảo rằng bạn làm nổi bật những chi tiết quan trọng, ghi lại những suy nghĩ cá nhân và cẩn thận sắp xếp chúng để tiện theo dõi sau này.</p> \
             </div>',
                 percentage: '45',
                 truePercent: '35'
@@ -469,18 +471,16 @@
 
             var researchEssays3 = {
                 step: '3',
-                heading: 'Structuring your essay',
+                heading: 'Lập dàn ý',
                 todos: '<div class="content">  \
-                <p><strong>A. Move from research to writing: Brainstorming</strong></p> \
-                <p>Analyze your sources attentively, considering their credibility and applicability. Then use this analysis to support your main points and arguments. As your thinking, remember to maintain a logical flow of thought, and use evidence from your study to back up your points of view.</p> \
+                <p><strong>A. Lên ý tưởng</strong></p> \
+                <p>Khi xây dựng những quan điểm và lập luận của riêng mình bạn hãy sử dụng các nguồn mình đã tự thu thập được. Lưu ý rằng trong suốt quá trình này bạn cần sử dụng tư duy logic của mình để hợp lý hóa những thông tin bạn chọn.</p> \
                 \
-                <p><strong>B. Form a thesis statement</strong></p> \
-                <p>Keep in mind that a solid thesis statement forms the basis of your research essay, directing your research and providing your paper with a defined direction. Your thesis statement should be a succinct, declarative sentence that wraps up your essay\'s major idea and expresses your opinion on the topic. Make sure your thesis is both specific and debatable. It shouldn\'t just be a factual claim; rather, it should be a statement that encourages debate and analysis.\
-                Visit <a href="https://uwaterloo.ca/writing-and-communication-centre/resources-thesis-statements" target="_blank" rel="noopener noreferrer">Thesis statement</a> for detailed information.</p> \
+                <p><strong>B.Xây dựng luận điểm:</strong></p> \
+                <p>Bạn hãy nhớ rằng một luận điểm vững chắc sẽ hình thành cơ sở cho bài luận nghiên cứu và định hướng nghiên cứu. Luận điểm của bạn nên là một câu ngắn gọn, tóm tắt ý chính của bài luận và bày tỏ ý kiến của bạn về chủ đề này. Hãy chắc chắn rằng luận điểm của bạn vừa cụ thể vừa có tính phản biện. Nó không nên chỉ là một tuyên bố thực tế; thay vào đó, nó phải là một tuyên bố có thể khuyến khích sự tranh luận và phân tích.</p> \
                 \
-                <p><strong>C. Make a detailed outline</strong></p> \
-                <p>Divide your writing into paragraphs or major points that support your thesis. Each section should be further broken into more narrowly focused subjects or arguments. Put in the main points, supporting details, and illustrations for each subtopic that you intend to use in your essay. \
-                <a href="https://www.scribbr.com/research-paper/outline/" target="_blank" rel="noopener noreferrer">Making an outline</a> not only serves as a clear road map for your writing but also makes sure you cover relevant content while keeping a logical flow throughout your research essay. </p> \
+                <p><strong>C. Lập dàn ý chi tiết: </strong></p> \
+                <p>Chia bài viết của bạn thành các đoạn văn, mỗi đoạn văn cần có câu chủ đề và được củng cố bằng những luận điểm nhỏ hơn. Dàn ý này không chỉ phục vụ như một lộ trình rõ ràng cho bài viết mà còn đảm bảo rằng những nội dung bạn viết ra có sự liên kết chặt chẽ, mạch lạc.</p> \
             </div>',
                 percentage: '60',
                 truePercent: '15'
@@ -488,31 +488,28 @@
 
             var researchEssays4 = {
                 step: '4',
-                heading: 'Writing the first draft',
+                heading: 'Viết bản nháp đầu tiên',
                 todos: '<div class="content">\
-                <p>Write your ideas down on paper without worrying too much about accuracy.\
-                The first draft is about creating content and putting your thoughts into words.\
-                Pay attention to the logical flow from the beginning to the end of your essay. <a href="https://www.concordia.ca/content/dam/concordia/offices/cdev/docs/writing/writing-essays-research-papers/creating_first_draft_research_paper.pdf" target="_blank" rel="noopener noreferrer">Here</a> are some tips to start your first draft</p> </div>',
+                <p>Trong bản nháp đầu tiên, hãy viết những suy nghĩ của bạn thành những câu chữ mà không cần lo lắng quá nhiều về độ chính xác của chúng. Điều bạn cần lưu ý duy nhất ở đây là tính logic từ đầu đến cuối bài luận của bạn. </p> </div>',
                 percentage: '80',
                 truePercent: '20'
             };
 
             var researchEssays5 = {
                 step: '5',
-                heading: 'Revising and proofreading',
+                heading: 'Rà soát lại những gì bạn đã viết ',
                 todos: '<div class="content">\
-                <p><strong>A. Evaluate your first draft and conduct additional research as needed</strong></p> \
-                <p> <a href="https://www.scribbr.com/language-rules/what-is-proofreading/" target="_blank" rel="noopener noreferrer">Review your first draft</a> and, if necessary, do further additional research.</p> \
+                <p><strong>Đánh giá bản viết nháp của bạn và tiến hành nghiên cứu bổ sung khi cần thiết. Khi kiểm tra lại bài bạn cần để ý đến mạch bài viết của mình đã rõ ràng và logic chưa? Không chỉ như vậy bạn cần xem cách sử dụng từng từ hay ngữ pháp, dấu câu đã sử dụng đúng chưa?</strong></p> \
+                <p>Nếu cần, hãy viết lại thêm vài bản nháp nữa để bài viết của bạn trở nên hoàn chỉnh hơn.</p> \
                 \
-                <p><strong>B. Revise your draft</strong></p> \
-                <p>Review the organization of your essay to ensure that your thoughts are arranged clearly and coherently. Ensure that each paragraph supports your core argument. Pay attention to grammar, punctuation, and spelling to improve readability overall. Additionally, seek feedback from your peers or instructors and consider appropriate recommendations to improve your work.</p> \
+                <p><strong>B. Chỉnh sửa bản thảo của bạn </strong></p> \
+                <p>Xem lại cách tổ chức bài viết để đảm bảo rằng các ý tưởng được sắp xếp rõ ràng và mạch lạc. Đảm bảo rằng mỗi đoạn đều hỗ trợ cho lập luận cốt lõi của bạn. Hãy chú ý đến ngữ pháp, dấu câu và chính tả để cải thiện bài viết một cách tổng thể.</p> \
                 \
-                <p><strong>C. Evaluate your second draft and rewrite as needed</strong></p> \
-                <p>Form a thesis statement. Focus on issues within the paragraph level, such as logic, analysis, flow, and transitions.</p> \
+                <p><strong>C. Đánh giá bản thảo thứ hai của bạn và viết lại nếu cần </strong></p> \
+                <p>Xây dựng luận điểm. Tập trung vào các vấn đề liên quan đến đoạn văn, chẳng hạn như logic, phân tích, quy trình viết và liên kết các đoạn văn. </p> \
                 \
-                <p><strong>D. Proofread and put your paper into its final format</strong></p> \
-                <p>Read attentively to catch all of those little mistakes. Spend time making sure your paper follows the rules outlined in the suitable style guide. Remember the page numbers, titles, margins, reference lists, and citations. \
-                There are some <a href="https://libguides.usc.edu/writingguide/proofreading" target="_blank" rel="noopener noreferrer">strategies for proofreading</a> you should check. For additional help, check out the VinUniversity library website for <a href="https://vinuni.libguides.com/citation" target="_blank" rel="noopener noreferrer">LibGuides about citation resources.</a> </p> \
+                <p><strong>D. Hiệu chỉnh và đưa bài viết của bạn vào định dạng cuối cùng </strong></p> \
+                <p>Hãy đọc kỹ để nắm bắt hết những lỗi nhỏ nhất. Dành thời gian để đảm bảo bài viết của bạn tuân theo các quy tắc được nêu trong hướng dẫn về văn phong phù hợp. Ghi nhớ số trang, tiêu đề, lề, danh sách tài liệu tham khảo và trích dẫn. Để được trợ giúp thêm, hãy xem trang web thư viện VinUniversity đọc các LibGuides để có thêm các thông liên quan đến trích dẫn.</p> \
             </div>',
                 percentage: '100',
                 truePercent: '20'
@@ -523,27 +520,16 @@
                 heading: 'Content',
                 todos: '<div class="content"> \
                 <p><strong>A. Understand the assignment</strong></p> \
-                <p>Take your time reading the instructions carefully and make sure you understand all the requirements, including the topic, design, length, and deadline, etc. Never hesitate to ask your instructor for clarification if something is unclear. To efficiently organize your time, break the assignment down into smaller activities and make a detailed timeline. \
-                For more information, please visit <a href="https://uwaterloo.ca/writing-and-communication-centre/resources-understand-your-assignment" target="_blank" rel="noopener noreferrer">Understand Your Assignment.</a></p> \
+                <p>Take your time reading the instructions carefully and make sure you understand all the requirements, including the topic, design, length, and deadline, etc. Never hesitate to ask your instructor for clarification if something is unclear. To efficiently organize your time, break the assignment down into smaller activities and make a detailed timeline.</p> \
                 \
                 <p><strong>B. Consider your audience</strong></p> \
                 <p>Be succinct if your audience comprises industry professionals. You are able to immediately get into the in-depth details of your research when presenting in your field because you will not have to define all technical terms or go over the basics. If your target audience is non-specialists, more background information is needed. Describe any technical terminology then Emphasize the significance of your research.</p> \
+                \
                 <p><strong>C. Create content</strong></p> \
-                <p>- Conduct research: </p> \
-                <p>Choose a research subject or topic that interests you and meets the requirements of the assignment. Do preliminary research to compile background data and evaluate whether reliable sources are accessible. Narrow down your topics (here are some <a href="https://libguides.usc.edu/writingguide/narrowtopic" target="_blank" rel="noopener noreferrer">Strategies for Narrowing the Research Topic</a>) and then start gathering data by using reliable search tools, academic databases, and <a href="https://vinuni.libguides.com/c.php?g=934922&p=6759514" target="_blank" rel="noopener noreferrer">libraries</a> to find sources that are applicable to your subject of study. </p>\
-                <p>Consider the author\'s credentials, the source\'s reputation, and the source\'s publication date when evaluating sources. Books from credible publishers, government publications, and peer-reviewed journals are frequently reliable resources. Assess the source\'s approach and supporting data carefully as well to judge its quality and applicability to your research. You can create a well-supported and well-rounded research essay by cross-referencing data with several sources and being critical of biases or conflicts of interest. </p> \
-                <p><a href="https://www.youtube.com/watch?v=CLSLFssRQ_E" target="_blank" rel="noopener noreferrer">RADAR test</a> can be used to evaluate the sources.</p> \
-                <p>- Organize information: </p> \
-                <p>Usually, poster presentations should have about 750 words, including sections below:</p> \
-                <ul>\
-                    <li> Abstract (optional): How would you summarize the research </li> \
-                    <li> Introduction: Why are you studying this? What is your research question?</li> \
-                    <li> Methods: When, where and how did you do it? What did you use?</li> \
-                    <li> Research: What did you find? Were you right?</li> \
-                    <li> Discussion: Why is your study important? What is the next step?</li> \
-                    <li> Reference Lits</li> \
-                </ul>\
-                <p>Remember to be concise since the poster has limited space </p> \
+                <ul> \
+                <li>Conduct research: Choose a research subject or topic that interests you and meets the requirements of the assignment.  Do preliminary research to compile background data and evaluate whether reliable sources are accessible.</li> \
+                <li>Organize information: Usually, poster presentations should have about 750 words, including sections like Abstract, Introduction, Methods, Research, Discussion, Reference List. Remember to be concise since the poster has limited space.</li> \
+                </ul> \
                 </div>',
                 percentage: '50',
                 truePercent: '50'
@@ -554,9 +540,8 @@
                 heading: 'Design',
                 todos: '<div class="content"> \
                 <p><strong>A. Make a layout</strong></p> \
-                <p>Consider factors that can affect your choice of size and design, such as the timing, target audience, and venue of the presentation. Pick a design platform that works for you and the other team members(<a href="https://www.youtube.com/watch?v=YiO4QPCk7SE" target="_blank" rel="noopener noreferrer">Canva</a>, <a href="https://www.youtube.com/watch?v=797-M5De_lA" target="_blank" rel="noopener noreferrer">Adobe Illustrators</a>, <a href="https://www.youtube.com/watch?v=_WnhoIbfcoM" target="_blank" rel="noopener noreferrer">Power point</a>, etc). </p? \
-                <p>Make a layout plan for your poster. Remember that the mix of text and graphics is visually appealing. Organize the material in a logical flow, usually from left to right and top to bottom. For simple reading, use headings and bullet points. Include illustrations to support your main ideas, such as charts, diagrams, and pictures. Use a consistent font style and size and leave some white space for a tidy, uncomplicated appearance. Last but not least, don\'t forget to give your contact details for future discussion and referrals.</p> \
-                <p><a href="https://undergradresearch.wustl.edu/making-poster#gallery" target="_blank" rel="noopener noreferrer">Here are some good example of posters.</a></p>\
+                <p>Consider factors that can affect your choice of size and design, such as the timing, target audience, and venue of the presentation. Pick a design platform that works for you and the other team members. Make a layout plan for your poster. Remember that the mix of text and graphics is visually appealing. Organize the material in a logical flow, usually from left to right and top to bottom. For simple reading, use headings and bullet points. Include illustrations to support your main ideas, such as charts, diagrams, and pictures. Use a consistent font style and size and leave some white space for a tidy, uncomplicated appearance. Last but not least, don\'t forget to give your contact details for future discussion and referrals.</p> \
+                \
                 <p><strong>B. Create the poster</strong></p> \
                 <ul> \
                 <li>Tips on visual design: Use a clear, dark, legible font on a light background to make text easier to read. Use two to three complementing colors to increase visual impact. Keep the space on your poster clear. Consider eliminating a component if it does not enhance the clarity of your research. Data visualizations such as tables, charts, and other images are a common way to turn complex data sets into clear and accessible information. Copyright restrictions may apply if you use any text, image, or table that you did not make yourself.</li> \
@@ -565,8 +550,6 @@
                 \
                 <p><strong>C. Revising and proofreading</strong></p> \
                 <p>Review your presentation design, seek feedback from your peers or instructors and consider appropriate recommendations to improve your work.</p> \
-                <p>Read attentively to catch all of those little mistakes. There are some <a href="https://libguides.usc.edu/writingguide/proofreading" target="_blank" rel="noopener noreferrer">strategies for proofreading</a> you should check.</p> \
-                <p>For additional help, check out the VinUniversity library website for <a href="https://vinuni.libguides.com/citation" target="_blank" rel="noopener noreferrer">LibGuides about citation resources</a>.</p> \
                 </div>',
                 percentage: '90',
                 truePercent: '40'
@@ -584,7 +567,6 @@
                 <li>Eliminate filler words such as "um", "like" and "you know."</li> \
                 </ul> \
                 <p>Interacting with people during your presentation is important for engagement and making an impact.</p> \
-                <p>For more practical presentation skill, check out <a href="https://youtube.com/playlist?list=PL-iPJqUs0UouaCEXjLvZi8TKe_y6Y42eR&si=euOWhhWRRQWTTkwx" target="_blank" rel="noopener noreferrer">these presentation techniques</a>.</p> \
                 </div>',
                 percentage: '100',
                 truePercent: '10'
@@ -671,10 +653,10 @@
                 heading: 'Get started',
                 todos: '<div class="content"> \
                 <p><strong>A. Understand your assignment</strong></p> \
-                <p>Take your time reading the instructions carefully and make sure you understand all the requirements, including the topic, format, length, and deadline, etc. Never hesitate to ask your instructor for clarification if something is unclear. </p> \
-                <p>To efficiently organize your time, break the assignment down into smaller activities and make a detailed timeline. For further information, take a look at <a href="https://uwaterloo.ca/writing-and-communication-centre/resources-understand-your-assignment" target="_blank" rel="noopener noreferrer">how to understand the assignment</a>.</p> \
+                <p>Take your time reading the instructions carefully and make sure you understand all the requirements, including the topic, format, length, and deadline, etc. Never hesitate to ask your instructor for clarification if something is unclear. To efficiently organize your time, break the assignment down into smaller activities and make a detailed timeline.</p> \
+                \
                 <p><strong>B. Form a research question</strong></p> \
-                <p>After doing quick initial research, narrow down your topic to identify a particular problem. Then develop it into a direct, precise question. Make sure your research question is clear, simple, and able to be answered. Additionally, it must be relevant and capable of expanding the field. Learn how to <a href="https://www.youtube.com/watch?v=HJTh2ccrex4" target="_blank" rel="noopener noreferrer">focus your research topic</a>.</p> \
+                <p>After doing quick initial research, narrow down your topic to identify a particular problem. Then develop it into a direct, precise question. Make sure your research question is clear, simple, and able to be answered. Additionally, it must be relevant and capable of expanding the field.</p> \
                 </div>',
                 percentage: '10',
                 truePercent: '10'
@@ -685,16 +667,16 @@
                 heading: 'Research',
                 todos: '<div class="content"> \
                 <p><strong>A. Create a research strategy</strong></p> \
-                <p>Depending on your research objectives, select <a href="https://guides.lib.berkeley.edu/researchmethods" target="_blank" rel="noopener noreferrer">suitable research methods</a>, whether they be qualitative, quantitative, or mixed methodologies. Create an organized plan for collecting data, laying out the sources, tools, and procedures you are going to employ.</p> \
+                <p>Depending on your research objectives, select suitable research methods, whether they be qualitative, quantitative, or mixed methodologies. Create an organized plan for collecting data, laying out the sources, tools, and procedures you are going to employ.</p> \
                 \
                 <p><strong>B. Research</strong></p> \
                 <p>Using reliable search tools, academic databases, and libraries to find sources that are applicable to your subject of study.</p> \
                 \
                 <p><strong>C. Evaluate sources for alignment with your topic</strong></p> \
-                <p>After collecting resources, <a href="https://vinuni.instructure.com/courses/1630/pages/evaluating-sources-on-the-internet?module_item_id=64265" target="_blank" rel="noopener noreferrer">evaluate and appraise the content</a> to fit with your topic. Consider the author\'s credentials, the source\'s reputation, and the source\'s publication date when evaluating sources. Books from credible publishers, government publications, and peer-reviewed journals are frequently reliable resources. Assess the source\'s approach and supporting data carefully as well to judge its quality and applicability to your research.</p> \
-                <p><a href="https://www.youtube.com/watch?v=CLSLFssRQ_E" target="_blank" rel="noopener noreferrer">RADAR test</a> can be used to evaluate the sources. </p>\
+                <p>After collecting resources, evaluate and appraise the content to fit with your topic. Consider the author\'s credentials, the source\'s reputation, and the source\'s publication date when evaluating sources. Books from credible publishers, government publications, and peer-reviewed journals are frequently reliable resources. Assess the source\'s approach and supporting data carefully as well to judge its quality and applicability to your research.</p> \
+                \
                 <p><strong>D. Research critically</strong></p> \
-                <p>Pay attention to the research techniques and supporting data utilized in the papers, articles, or any material you are reading as you go along, assessing their validity and applicability to your own research. Compare and contrast various sources, looking for similarities and differences. Remember to take notes or highlight any details that emphasize important points, discoveries, and your own thoughts. Discover <a href="https://vinuni.instructure.com/courses/1630/pages/reading-and-note-taking?module_item_id=64273" target="_blank" rel="noopener noreferrer">reading and notetaking strategies</a>.</p> \
+                <p>Pay attention to the research techniques and supporting data utilized in the papers, articles, or any material you are reading as you go along, assessing their validity and applicability to your own research. Compare and contrast various sources, looking for similarities and differences. Remember to take notes or highlight any details that emphasize important points, discoveries, and your own thoughts.</p> \
                 </div>',
                 percentage: '40',
                 truePercent: '30'
@@ -705,10 +687,10 @@
                 heading: 'Organize your literature review',
                 todos: '<div class="content"> \
                 <p><strong>A. Identify themes and organize</strong></p> \
-                <p>Create a citation management system as you collect pertinent sources to keep track of your references, such as <a href="https://www.youtube.com/watch?v=ui8vPKUK5sQ" rel="noopener noreferrer">Zotero</a>, <a href="https://guides.lib.umich.edu/c.php?g=283006&p=1885648" target="_blank" rel="noopener noreferrer">Mendeley</a>, or <a href="https://vinuni.libguides.com/EndNote" target="_blank" rel="noopener noreferrer">EndNote</a>. After gathering your sources, group them into themes or subtopics to identify common patterns and gaps. Look for organizational patterns like same ideas, theories, themes, corporate structures, regional emphasis, data set, historical development, problem-solution.</p> \
+                <p>Create a citation management system as you collect pertinent sources to keep track of your references, such as Zotero, Mendeley, or EndNote. After gathering your sources, group them into themes or subtopics to identify common patterns and gaps. Look for organizational patterns like same ideas, theories, themes, corporate structures, regional emphasis, data set, historical development, problem-solution.</p> \
                 \
                 <p><strong>B. Thesis statement</strong></p> \
-                <p>Write a <a href="https://writingcenter.fas.harvard.edu/thesis" target="_blank" rel="noopener noreferrer">thesis statement</a> that summarizes a general picture of the available research on the topic, using the themes and conclusions you established in the earlier rounds. Your thesis statement should be a succinct, declarative sentence that wraps up your essay\'s major idea and expresses your opinion on the topic.</p> \
+                <p>Write a thesis statement that summarizes a general picture of the available research on the topic, using the themes and conclusions you established in the earlier rounds. Your thesis statement should be a succinct, declarative sentence that wraps up your essay\'s major idea and expresses your opinion on the topic.</p> \
                 </div>',
                 percentage: '60',
                 truePercent: '20'
@@ -719,7 +701,7 @@
                 heading: 'First draft',
                 todos: '<div class="content"> \
                 <p><strong>A. Verify the style guide requirements</strong></p> \
-                <p>For more information on the required style guide, consult your course curriculum or your instructor. Common citation styles include the Chicago style guide, APA style guide, IEEE style guide, MLA style guide. Check out the VinUniversity library website for <a href="https://vinuni.libguides.com/citation" target="_blank" rel="noopener noreferrer">LibGuides about citation resources</a>.</p> \
+                <p>For more information on the required style guide, consult your course curriculum or your instructor. Common citation styles include the Chicago style guide, APA style guide, IEEE style guide, MLA style guide. Check out the VinUniversity library website for LibGuides about citation resources.</p> \
                 \
                 <p><strong>B. Introduction</strong></p> \
                 <p>Introduce the broad topic and its importance to the academic field. Gradually narrow down the review\'s focus, mentioning the major issues, differences, and gaps in the literature. Indicate your review\'s aim/ thesis statement. Give readers a roadmap for what to expect in the next parts by explaining the organization of your review.</p> \
@@ -748,8 +730,7 @@
                 <p>Focus on issues within the paragraph level, such as logic, analysis, flow, and transitions.</p> \
                 \
                 <p><strong>D. Proofread and put your paper into its final format</strong></p> \
-                <p>Read attentively to catch all of those little mistakes. There are some <a href="https://libguides.usc.edu/writingguide/proofreading" target="_blank" rel="noopener noreferrer">strategies for proofreading</a> you should check.</p> \
-                <p>For additional help, check out the VinUniversity library website for <a href="https://vinuni.libguides.com/citation" target="_blank" rel="noopener noreferrer">LibGuides about citation resources</a>.</p> \
+                <p>Read attentively to catch all of those little mistakes. Spend time making sure your paper follows the rules outlined in the suitable style guide. Remember the page numbers, titles, margins, reference lists, and citations. For additional help, check out the VinUniversity library website for LibGuides about citation resources.</p> \
                 </div>',
                 percentage: '100',
                 truePercent: '20'
@@ -954,7 +935,6 @@
                 <li>Your hypothesis for the experiment;</li> \
                 <li>Reasons for your hypothesis.</li> \
                 </ol> \
-                <p>Refers to the introduction part of <a href="https://writeonline.ca/labreport.php?content=section4" target="_blank" rel="noopener noreferrer">WriteOnline.ca\'s Lab Report instruction</a> for further information </p> \
                 </div>',
                 percentage: '10',
                 truePercent: '10'
@@ -966,7 +946,6 @@
                 todos: '<div class="content"> \
                 <p>Craft a narrative outlining the methodology you employed. While depicting your procedure, make reference to the equipment and analytical tools you utilized. Your objective is to offer a concise, focused account.</p> \
                 <p>Include only the essential particulars required for replicating the experiment. Omit any discussion of procedures and tools that your peers would already be acquainted with.</p> \
-                <p>Refers to the material and methods part of <a href="https://writeonline.ca/labreport.php?content=section4" target="_blank" rel="noopener noreferrer">WriteOnline.ca\'s Lab Report instruction</a> for further information </p> \
                 </div>',
                 percentage: '15',
                 truePercent: '5'
@@ -982,7 +961,6 @@
                 <li>Body paragraphs where you elucidate your observations.</li> \
                 <li>Visual aids, such as graphs, tables, and figures, to substantiate your observations.</li> \
                 </ol> \
-                <p>Refers to the result part of <a href="https://writeonline.ca/labreport.php?content=section4" target="_blank" rel="noopener noreferrer">WriteOnline.ca\'s Lab Report instruction</a> for further information </p> \
                 </div>',
                 percentage: '40',
                 truePercent: '25'
@@ -1016,7 +994,6 @@
                 <li>An evaluation of the significance of the results (What is the meaning of these outcomes? Why do they matter?).</li> \
                 <li>Suggestions or recommendations for future research endeavors.</li> \
                 </ol> \
-                <p>Refers to the discussion part of <a href="https://writeonline.ca/labreport.php?content=section4" target="_blank" rel="noopener noreferrer">WriteOnline.ca\'s Lab Report instruction</a> for further information </p> \
                 </div>',
                 percentage: '65',
                 truePercent: '10'
@@ -1035,7 +1012,6 @@
                 <li>Explaining the broader implications of the findings, if applicable.</li> \
                 <li>Ending with a brief statement that ties back to the experiment\'s purpose.</li> \
                 </ol> \
-                <p>Refers to the conclusion part of <a href="https://writeonline.ca/labreport.php?content=section4" target="_blank" rel="noopener noreferrer">WriteOnline.ca\'s Lab Report instruction</a> for further information </p> \
                 </div>',
                 percentage: '75',
                 truePercent: '10'
@@ -1053,7 +1029,7 @@
                 <li>An exposition of the conclusions drawn.</li> \
                 <li>The scientific principles you gained insights into during the lab.</li> \
                 </ol> \
-                <p>In your bibliography, make sure to include reference details for all the sources employed in crafting your report. Format it in accordance with the citation style guide recommended in your lab manual or by your instructor. Check out the VinUniversity library website for <a href="https://vinuni.libguides.com/citation" target="_blank" rel="noopener noreferrer">LibGuides about citation resources.</a>.</p> \
+                <p>In your bibliography, make sure to include reference details for all the sources employed in crafting your report. Format it in accordance with the citation style guide recommended in your lab manual or by your instructor.</p> \
                 </div>',
                 percentage: '85',
                 truePercent: '10'
@@ -1228,18 +1204,24 @@
                         var ISOsuffix = 'T00:00:00.000-05:00';
                         var dueDate = new Date(vm.fromDate + ISOsuffix); // this will be a varying calculated value for each step
                         dueDate.setDate(fromDate.getDate() + numDays);
-                        return dueDate.toDateString();
+                        var formatter = new Intl.DateTimeFormat('vi-VN', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            weekday: 'long'
+                        });
+                        return formatter.format(dueDate);
                     },
                 },
                 
                 template: '<b-container class="steps">\
                 <b-row>\
                     <b-col>\
-                        <b-button block v-b-toggle.collapse-3 size="lg" class="m-1"><b>Step {{ stepobject.step }}: {{ stepobject.heading }}.</b> <span class="float-right">Finish by {{ calcDueDate }}</span></b-button>\
+                        <b-button block v-b-toggle.collapse-3 size="lg" class="m-1"><b>Step {{ stepobject.step }}: {{ stepobject.heading }}.</b> <span class="float-right">Hoàn thành trước {{ calcDueDate }}</span></b-button>\
                         <b-collapse visible id="collapse-3">\
                             <b-card>\
                                 <b-card-text>\
-                                    <p><b> (Percent time spent on this step: {{ stepobject.truePercent}}%) </b></p>\
+                                    <p><b> Thời gian dành cho bước này: {{ stepobject.truePercent}}%) </b></p>\
                                     <p v-html="stepobject.todos"> </p>\
                                 </b-card-text>\
                                 <!-- <b-button variant="outline-info">\
