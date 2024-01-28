@@ -227,9 +227,30 @@
                                 <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
                                 <h5>LAB REPORT</h5>
                             </b-button>
+                        </b-card-group>
+                    </div>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col>
+                    <div class="form">
+                        <!-- Third Row of Icons -->
+                        <b-card-group deck class = "justify-content-center">
                             <b-button @click="pickAssignment('policyBrief')" variant="outline-info">
-                                <img src="https://media-public.canva.com/0RzBw/MAFUGP0RzBw/1/t.png" />
+                                <img src="https://media-public.canva.com/5fE14/MAFmn45fE14/1/t.png" />
                                 <h5>POLICY BRIEF</h5>
+                            </b-button>
+                            <b-button @click="pickAssignment('infographic')" variant="outline-info">
+                                <img src="https://media-public.canva.com/QFtjY/MAFEKnQFtjY/1/t.png" />
+                                <h5>INFOGRAPHIC</h5>
+                            </b-button>
+                            <b-button @click="pickAssignment('podcast)" variant="outline-info">
+                                <img src="https://media-public.canva.com/9bqGM/MAFazw9bqGM/1/t.png" />
+                                <h5>PODCAST</h5>
+                            </b-button>
+                            <b-button @click="pickAssignment('businessCaseStudy')" variant="outline-info">
+                                <img src="https://media-public.canva.com/0RzBw/MAFUGP0RzBw/1/t.png" />
+                                <h5>BUSINESS CASE STUDY</h5>
                             </b-button>
                         </b-card-group>
                     </div>
@@ -265,7 +286,7 @@
                 </h2>
       
                 <p class="fw1 f5 mt0 mb3">
-                  Introduction: A research paper's objective is to gather multiple perspectives, supporting data, and verifiable facts about a subject from books, journals, and interviews, then to interpret the material in writing. It involves the interaction between the writer, readers, and other authors. Scholars and researchers primarily publish their discoveries and advancements in their fields of study through research papers.
+                  A research paper's objective is to gather multiple perspectives, supporting data, and verifiable facts about a subject from books, journals, and interviews, then to interpret the material in writing. It involves the interaction between the writer, readers, and other authors. Scholars and researchers primarily publish their discoveries and advancements in their fields of study through research papers.
                   While a research paper must be finalized in a format that is clear, concise, and well-organized, writing one is rather a difficult task. It includes processes like investigation, logical thinking, evaluating sources, organizing, and writing. These phases do not go in a straight line; instead, the author swings back and forth, and throughout the process, the argument and focus of the paper are developed.
                 </p>
               </article> 
@@ -284,7 +305,7 @@
                 </h2>
       
                 <p class="fw1 f5 mt0 mb3">
-                  Introduction: A poster presentation is a brief visual summary of research findings or a subject that is generally presented at conferences, seminars, or academic events on a sizable poster board. A strong visual presentation and high-quality studies are both components of an effective poster presentation. 
+                  A poster presentation is a brief visual summary of research findings or a subject that is generally presented at conferences, seminars, or academic events on a sizable poster board. A strong visual presentation and high-quality studies are both components of an effective poster presentation. 
                   A STEM presentation uses text, graphs, charts, and graphics to explain difficult scientific concepts, experimental findings, or ground-breaking technology innovations. STEM poster presentations give researchers, engineers, and scientists opportunities to display their work, discuss ideas, and get peer comments. This promotes collaboration and the sharing of knowledge throughout the STEM community.
                   
                 </p>
@@ -411,6 +432,62 @@
              <steps v-bind:stepobject='policyBrief3'></steps>
              <steps v-bind:stepobject='policyBrief4'></steps>
              <steps v-bind:stepobject='policyBrief5'></steps>
+             <a class="f6 link dim br-pill ba ph3 pv2 mb2 dib light-purple" href="#top">Back to top ^</a>
+        </template>
+
+        <template v-if="isAssignment('infographic') && show && isDatescategory()">
+            <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
+               <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
+                INFOGRAPHIC
+               </h2>
+     
+               <p class="fw1 f5 mt0 mb3">
+                Infographics are visual representations of data that condense complex information into visually appealing and readily understood pictures. Learning about infographic design as a university project provides students with a variety of learning opportunities. Through the collection and synthesis of data, it not only develops research and analytical abilities but also expertise in visual communication. The significance of infographic designing is in the capacity to clearly communicate complex ideas to a variety of audiences.
+               </p>
+             </article> 
+             <steps v-bind:stepobject='infographic1'></steps>
+             <steps v-bind:stepobject='infographic2'></steps>
+             <steps v-bind:stepobject='infographic3'></steps>
+             <steps v-bind:stepobject='infographic4'></steps>
+             <a class="f6 link dim br-pill ba ph3 pv2 mb2 dib light-purple" href="#top">Back to top ^</a>
+        </template>
+
+        <template v-if="isAssignment('podcast') && show && isDatescategory()">
+            <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
+               <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
+                PODCAST
+               </h2>
+     
+               <p class="fw1 f5 mt0 mb3">
+                Podcasting is an audio series covering a variety of themes, from academic talks to storytelling and interviews. Podcasting extends beyond the conventional written format. It allows podcast makers or students to go further into their chosen subjects using spoken word, improving their communication abilities and building a stronger bond with the listeners. Researching, writing, producing, and editing a piece of work not only sharpens academic skills but also fosters creativity and flexibility. Additionally, podcasts have a wider audience outside of the classroom, allowing podcast makers to meaningfully participate in public conversation and share their knowledge with a wider audience. 
+               </p>
+             </article> 
+             <steps v-bind:stepobject='podcast1'></steps>
+             <steps v-bind:stepobject='podcast2'></steps>
+             <steps v-bind:stepobject='podcast3'></steps>
+             <steps v-bind:stepobject='podcast4'></steps>
+             <steps v-bind:stepobject='podcast5'></steps>
+             <a class="f6 link dim br-pill ba ph3 pv2 mb2 dib light-purple" href="#top">Back to top ^</a>
+        </template>
+
+        <template v-if="isAssignment('businessCaseStudy') && show && isDatescategory()">
+            <article class="mw7 center ph3 ph5-ns tc br2 pv5 bg-washed-green dark-green mb5">
+               <h2 class="fw2 f4 f3-ns lh-title mt0 mb3">
+                BUSINESS CASE STUDY
+               </h2>
+     
+               <p class="fw1 f5 mt0 mb3">
+                A business case study involves actual business scenarios or fictional representations of business situations or challenges. These studies empower students to thoroughly examine diverse business issues from different viewpoints, applying the critical thinking and problem-solving skills cultivated in the classroom. Through business case studies, complex business theories and frameworks can be simplified, illustrating their practical applications. 
+               </p>
+             </article> 
+             <steps v-bind:stepobject='businessCaseStudy1'></steps>
+             <steps v-bind:stepobject='businessCaseStudy2'></steps>
+             <steps v-bind:stepobject='businessCaseStudy3'></steps>
+             <steps v-bind:stepobject='businessCaseStudy4'></steps>
+             <steps v-bind:stepobject='businessCaseStudy5'></steps>
+             <steps v-bind:stepobject='businessCaseStudy6'></steps>
+             <steps v-bind:stepobject='businessCaseStudy7'></steps>
+             <steps v-bind:stepobject='businessCaseStudy8'></steps>
              <a class="f6 link dim br-pill ba ph3 pv2 mb2 dib light-purple" href="#top">Back to top ^</a>
         </template>
 
@@ -1404,7 +1481,7 @@
                 todos: '<div class="content"> \
                 <p><strong>A. Understanding your assignment</strong></p>\
                 <p>Typically, university assignments require you to showcase your grasp of specific topics within the scope of your course. Case study assignments tend to be complicated, requiring careful attention to the given instructions. Failure to adhere to the task requirements may result in a lower grade, irrespective of the quality of your writing. \
-                 If you must select from various questions, topics, or cases, conducting preliminary reading (e.g., from your textbook) can assist you in making informed decisions at this stage. Access the “Understanding the Assignment” for further clarification. </p> \
+                If you must select from various questions, topics, or cases, conducting preliminary reading (e.g., from your textbook) can assist you in making informed decisions at this stage. Access the “Understanding the Assignment” for further clarification. </p> \
                 <p><strong>B. Get to know components of a business case study report</strong></p>\
                 <p>Understanding which parts are included in a business case study report would help you to have a great big picture of what exactly you need to work on. Have a look at this Case Study Structure Sample and Case Study Report Sample.</p> \
                 <p><strong>C. Group Work (if this is a group assignment)</strong></p>\
