@@ -1192,6 +1192,105 @@
                 percentage: '100',
                 truePercent: '15'
             };
+            
+            var infographic1 = {
+                step: '1',
+                heading: 'Getting Started',
+                todos: '<div class="content"> \
+                <p><strong>A. Understand the assignment</strong></p>\
+                <p>Take your time reading the instruction carefully and make sure you understand all the requirements, including the topic, design, length, and deadline, etc. Never hesitate to ask your instructor for clarification if something is unclear.\
+                To efficiently organize your time, break the assignment down into smaller activities and make a detailed timeline. For more information, please visit Understand Your Assignment.</p>\
+                <p><strong>B. Consider your audience</strong></p>\
+                <p>Be succinct if your audience comprises industry professionals. You are able to immediately get into the in-depth details of your research when presenting in your field because you will not have to define all technical terms or go over the basics. </p>\
+                <p>If your target audience is non-specialists, more background information is needed. Describe any technical terminology then emphasize the significance of your research.</p>\
+                </div>',
+                percentage: '10',
+                truePercent: '10'
+            };
+
+            var infographic2 = {
+                step: '2',
+                heading: 'Gathering Data',
+                todos: '<div class="content"> \
+                <p><strong>A. Conduct research:</strong></p>\
+                <p>Choose a research subject or topic that interests you and meets the requirement of the assignment. Do preliminary research to compile background data and evaluate whether reliable sources are accessible. Narrow down your topics (here are some Strategies for Narrowing the Research Topic) and start gathering data by using reliable search tools, academic databases, and libraries to find sources that are applicable to your subject of study.</p>\
+                <p>Consider the author\'s credentials, the source\'s reputation, and the source\'s publication date when evaluating sources. Books from credible publishers, government publications, and peer-reviewed journals are frequently reliable sources.\
+                Assess the source\'s approach and supporting data carefully as well to judge its quality and applicability to your research. You can create a well-supported and well-rounded research essay by cross-referencing data with several sources and being critical of biases or conflicts of interest.</p>\
+                <p>RADAR test can be used to evaluate sources.</p>\
+                <p><strong>B. Organize information:</strong></p>\
+                <p>Information graphics can be demonstrated and presented in a variety of different formats, including websites, videos, PowerPoint presentations, posters, ... However, an infographic usually include of the following parts:</p>\
+                <ul> \
+                <li> Title: Conveys the main message or topic of the infographic.\
+                <li> Introduction: Provides context and sets the tone for the infographic. \
+                <li> Main Ideas \
+                <li> Key Takeaways/Conclusion: Summarize main points by recaping the most important information. \
+                <li> References \
+                </ul> \
+                <p>Remember to be concise since the poster has limited space </p> \
+                </div>',
+                percentage: '45',
+                truePercent: '35'
+            };
+
+            var infographic3 = {
+                step: '3',
+                heading: 'Design',
+                todos: '<div class="content"> \
+                <p><strong>A. Make a layout</strong></p>\
+                <p>Consider factors that can affect your choice of size and design, such as the timing, target audience, and venue of the presentation. \
+                Pick a design platform that works for you and the other team members (Canva, Adobe Illustrators, Power point, etc)</p>\
+                <p>Make a layout plan for your poster. Remember that the mix of text and graphics is visually appealing. Organize the material in a logical flow. \
+                Include illustrations to support your main ideas, such as charts, diagrams, and pictures. Use a consistent font style and size and leave some white space for a tidy, uncomplicated appearance.</p> \
+                <p><strong>B. Create the poster</strong></p>\
+                <p>Tips on visual design</p>\
+                <ul> \
+                <li> Use a clear, dark, legible font on a light background to make text easier to read. \
+                <li> Use two to three complementing colors to increase visual impact.\
+                <li> Keep the space on your infographic clear.\
+                <li> Consider eliminating a component if it does not enhance the clarity of your research.\
+                <li> Data visualizations such as tables, charts and other images are a common way to turn complex data sets into clear and accessible information.\
+                <li> Copyright restrictions may apply if you use any text, image, or table that you did not make yourself. \
+                </ul> \
+                <p> Tips for text </p> \
+                <ul> \
+                <li> Aim for short and to-the-point sentences \
+                <li> Bolding can be used to emphaseze a few key details but be careful not to overuse it. \
+                </ul> \
+                </div>',
+                percentage: '80',
+                truePercent: '35'
+            };
+
+            var infographic4 = {
+                step: '4',
+                heading: 'Revising and proofreading',
+                todos: '<div class="content"> \
+                <p>Review your presentation design, seek feedback from your peers or instructors and consider appropriate recommendations to improve your work.</p> \
+                <p>Read attentively to catch all of those little mistakes. There are some strategies for proofreading you should check </p> \
+                <p>For additional help, check out the VinUniversity library website for LibGuides about citation resources. </p> \
+                </div>',
+                percentage: '90',
+                truePercent: '10'
+            };
+
+            var infographic5 = {
+                step: '5',
+                heading: 'Presentation',
+                todos: '<div class="content"> \
+                <p><Prepare a speech for your poster.</p>\
+                <ul> \
+                <li> Speak clearly. \
+                <li> Project your voice. \
+                <li> Make eye contact and interact with your audience. \
+                <li> Gesture to appropriate visuals. \
+                <li> Eliminate filler words such as "um", "like" and "you know".\
+                </ul> \
+                <p>During your presentation, interacting with people is important</p> \
+                <p> For more practical presentation skills, checkout These presentation techniques. \
+                </div>',
+                percentage: '100',
+                truePercent: '10'
+            };
 
             // TEMPLATE for <steps>
             var Step = {
@@ -1305,7 +1404,7 @@
                             emailTo: document.getElementById('emailTo').value,
                         };
 
-                        const serviceID = "service_t04rm3h";
+                        const serviceID = "service_5r78bbg";
                         const templateID = "template_ftc406h";
 
                         emailjs.send(serviceID, templateID, params).then(
